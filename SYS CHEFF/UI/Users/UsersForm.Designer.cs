@@ -31,9 +31,15 @@ namespace SYS_CHEF.UI.Users
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UsersForm));
+            DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule1 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
+            DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule2 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
+            this.btnSave = new SYS_CHEF.UI.Buttons.ButtonSave();
+            this.btnExit = new SYS_CHEF.UI.Buttons.ButtonExit();
+            this.btnChangePassword = new SYS_CHEF.UI.Buttons.ButtonEdit();
             this.groupControl3 = new DevExpress.XtraEditors.GroupControl();
             this.tfLastAccessFrom = new DevExpress.XtraEditors.TextEdit();
+            this.bdgUsers = new System.Windows.Forms.BindingSource(this.components);
             this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
             this.tfLastAccessAt = new DevExpress.XtraEditors.TextEdit();
             this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
@@ -45,18 +51,18 @@ namespace SYS_CHEF.UI.Users
             this.tfId = new DevExpress.XtraEditors.TextEdit();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
+            this.tfLogin = new DevExpress.XtraEditors.TextEdit();
             this.tfFullName = new DevExpress.XtraEditors.TextEdit();
+            this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
-            this.btnSave = new SYS_CHEF.UI.Buttons.ButtonSave();
-            this.btnExit = new SYS_CHEF.UI.Buttons.ButtonExit();
-            this.btnChangePassword = new SYS_CHEF.UI.Buttons.ButtonEdit();
-            this.bdgUsers = new System.Windows.Forms.BindingSource(this.components);
+            this.validator = new DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl3)).BeginInit();
             this.groupControl3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tfLastAccessFrom.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bdgUsers)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tfLastAccessAt.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
             this.groupControl2.SuspendLayout();
@@ -67,8 +73,9 @@ namespace SYS_CHEF.UI.Users
             ((System.ComponentModel.ISupportInitialize)(this.tfAdmitedAt.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tfAdmitedAt.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tfId.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tfLogin.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tfFullName.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bdgUsers)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.validator)).BeginInit();
             this.SuspendLayout();
             // 
             // groupControl1
@@ -83,7 +90,9 @@ namespace SYS_CHEF.UI.Users
             this.groupControl1.Controls.Add(this.tfId);
             this.groupControl1.Controls.Add(this.labelControl2);
             this.groupControl1.Controls.Add(this.labelControl4);
+            this.groupControl1.Controls.Add(this.tfLogin);
             this.groupControl1.Controls.Add(this.tfFullName);
+            this.groupControl1.Controls.Add(this.labelControl7);
             this.groupControl1.Controls.Add(this.labelControl3);
             this.groupControl1.Controls.Add(this.labelControl1);
             this.groupControl1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -92,6 +101,59 @@ namespace SYS_CHEF.UI.Users
             this.groupControl1.Size = new System.Drawing.Size(769, 285);
             this.groupControl1.TabIndex = 0;
             this.groupControl1.Text = "Cadastro de Funcionário";
+            // 
+            // btnSave
+            // 
+            this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSave.BackColor = System.Drawing.Color.Transparent;
+            this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSave.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSave.ForeColor = System.Drawing.Color.Black;
+            this.btnSave.Image = ((System.Drawing.Image)(resources.GetObject("btnSave.Image")));
+            this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSave.Location = new System.Drawing.Point(568, 249);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(95, 30);
+            this.btnSave.TabIndex = 6;
+            this.btnSave.Text = "Salvar";
+            this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnSave.UseVisualStyleBackColor = false;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
+            // btnExit
+            // 
+            this.btnExit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnExit.BackColor = System.Drawing.Color.Transparent;
+            this.btnExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnExit.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnExit.ForeColor = System.Drawing.Color.Black;
+            this.btnExit.Image = ((System.Drawing.Image)(resources.GetObject("btnExit.Image")));
+            this.btnExit.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnExit.Location = new System.Drawing.Point(669, 249);
+            this.btnExit.Name = "btnExit";
+            this.btnExit.Size = new System.Drawing.Size(95, 30);
+            this.btnExit.TabIndex = 5;
+            this.btnExit.Text = "Sair";
+            this.btnExit.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnExit.UseVisualStyleBackColor = false;
+            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
+            // 
+            // btnChangePassword
+            // 
+            this.btnChangePassword.BackColor = System.Drawing.Color.Transparent;
+            this.btnChangePassword.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnChangePassword.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnChangePassword.ForeColor = System.Drawing.Color.Black;
+            this.btnChangePassword.Image = ((System.Drawing.Image)(resources.GetObject("btnChangePassword.Image")));
+            this.btnChangePassword.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnChangePassword.Location = new System.Drawing.Point(88, 109);
+            this.btnChangePassword.Name = "btnChangePassword";
+            this.btnChangePassword.Size = new System.Drawing.Size(184, 30);
+            this.btnChangePassword.TabIndex = 4;
+            this.btnChangePassword.Text = "Defenir senha do usuário";
+            this.btnChangePassword.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnChangePassword.UseVisualStyleBackColor = false;
+            this.btnChangePassword.Click += new System.EventHandler(this.btnChangePassword_Click);
             // 
             // groupControl3
             // 
@@ -113,6 +175,10 @@ namespace SYS_CHEF.UI.Users
             this.tfLastAccessFrom.Properties.ReadOnly = true;
             this.tfLastAccessFrom.Size = new System.Drawing.Size(284, 20);
             this.tfLastAccessFrom.TabIndex = 1;
+            // 
+            // bdgUsers
+            // 
+            this.bdgUsers.DataSource = typeof(SYS_CHEF.user);
             // 
             // labelControl6
             // 
@@ -171,7 +237,7 @@ namespace SYS_CHEF.UI.Users
             // 
             // tfDismissedAt
             // 
-            this.tfDismissedAt.DataBindings.Add(new System.Windows.Forms.Binding("Tag", this.bdgUsers, "dismissed_at", true));
+            this.tfDismissedAt.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bdgUsers, "dismissed_at", true));
             this.tfDismissedAt.EditValue = null;
             this.tfDismissedAt.Location = new System.Drawing.Point(88, 83);
             this.tfDismissedAt.Name = "tfDismissedAt";
@@ -194,6 +260,9 @@ namespace SYS_CHEF.UI.Users
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.tfAdmitedAt.Size = new System.Drawing.Size(100, 20);
             this.tfAdmitedAt.TabIndex = 2;
+            conditionValidationRule1.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule1.ErrorText = "Informe a data de adimissão";
+            this.validator.SetValidationRule(this.tfAdmitedAt, conditionValidationRule1);
             // 
             // tfId
             // 
@@ -220,13 +289,32 @@ namespace SYS_CHEF.UI.Users
             this.labelControl4.TabIndex = 0;
             this.labelControl4.Text = "Demitido em:";
             // 
+            // tfLogin
+            // 
+            this.tfLogin.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bdgUsers, "login", true));
+            this.tfLogin.Location = new System.Drawing.Point(514, 24);
+            this.tfLogin.Name = "tfLogin";
+            this.tfLogin.Size = new System.Drawing.Size(136, 20);
+            this.tfLogin.TabIndex = 1;
+            // 
             // tfFullName
             // 
             this.tfFullName.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bdgUsers, "full_name", true));
             this.tfFullName.Location = new System.Drawing.Point(88, 24);
             this.tfFullName.Name = "tfFullName";
-            this.tfFullName.Size = new System.Drawing.Size(562, 20);
+            this.tfFullName.Size = new System.Drawing.Size(381, 20);
             this.tfFullName.TabIndex = 1;
+            conditionValidationRule2.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule2.ErrorText = "Informe o nome completo do usuário.";
+            this.validator.SetValidationRule(this.tfFullName, conditionValidationRule2);
+            // 
+            // labelControl7
+            // 
+            this.labelControl7.Location = new System.Drawing.Point(479, 27);
+            this.labelControl7.Name = "labelControl7";
+            this.labelControl7.Size = new System.Drawing.Size(29, 13);
+            this.labelControl7.TabIndex = 0;
+            this.labelControl7.Text = "Login:";
             // 
             // labelControl3
             // 
@@ -244,63 +332,6 @@ namespace SYS_CHEF.UI.Users
             this.labelControl1.TabIndex = 0;
             this.labelControl1.Text = "Nome completo:";
             // 
-            // btnSave
-            // 
-            this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSave.BackColor = System.Drawing.Color.Transparent;
-            this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSave.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSave.ForeColor = System.Drawing.Color.Black;
-            this.btnSave.Image = ((System.Drawing.Image)(resources.GetObject("btnSave.Image")));
-            this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(568, 249);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(95, 30);
-            this.btnSave.TabIndex = 6;
-            this.btnSave.Text = "Salvar";
-            this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnSave.UseVisualStyleBackColor = false;
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
-            // 
-            // btnExit
-            // 
-            this.btnExit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnExit.BackColor = System.Drawing.Color.Transparent;
-            this.btnExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnExit.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnExit.ForeColor = System.Drawing.Color.Black;
-            this.btnExit.Image = ((System.Drawing.Image)(resources.GetObject("btnExit.Image")));
-            this.btnExit.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnExit.Location = new System.Drawing.Point(669, 249);
-            this.btnExit.Name = "btnExit";
-            this.btnExit.Size = new System.Drawing.Size(95, 30);
-            this.btnExit.TabIndex = 5;
-            this.btnExit.Text = "Sair";
-            this.btnExit.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnExit.UseVisualStyleBackColor = false;
-            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
-            // 
-            // btnChangePassword
-            // 
-            this.btnChangePassword.BackColor = System.Drawing.Color.Transparent;
-            this.btnChangePassword.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnChangePassword.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnChangePassword.ForeColor = System.Drawing.Color.Black;
-            this.btnChangePassword.Image = ((System.Drawing.Image)(resources.GetObject("btnChangePassword.Image")));
-            this.btnChangePassword.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnChangePassword.Location = new System.Drawing.Point(88, 109);
-            this.btnChangePassword.Name = "btnChangePassword";
-            this.btnChangePassword.Size = new System.Drawing.Size(219, 30);
-            this.btnChangePassword.TabIndex = 4;
-            this.btnChangePassword.Text = "Defenir senha do usuário";
-            this.btnChangePassword.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnChangePassword.UseVisualStyleBackColor = false;
-            this.btnChangePassword.Click += new System.EventHandler(this.btnChangePassword_Click);
-            // 
-            // bdgUsers
-            // 
-            this.bdgUsers.DataSource = typeof(SYS_CHEF.user);
-            // 
             // UsersForm
             // 
             this.Appearance.BackColor = System.Drawing.Color.White;
@@ -317,6 +348,7 @@ namespace SYS_CHEF.UI.Users
             this.groupControl3.ResumeLayout(false);
             this.groupControl3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tfLastAccessFrom.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bdgUsers)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tfLastAccessAt.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).EndInit();
             this.groupControl2.ResumeLayout(false);
@@ -327,8 +359,9 @@ namespace SYS_CHEF.UI.Users
             ((System.ComponentModel.ISupportInitialize)(this.tfAdmitedAt.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tfAdmitedAt.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tfId.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tfLogin.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tfFullName.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bdgUsers)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.validator)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -356,6 +389,9 @@ namespace SYS_CHEF.UI.Users
         private Buttons.ButtonExit btnExit;
         private Buttons.ButtonSave btnSave;
         private System.Windows.Forms.BindingSource bdgUsers;
+        private DevExpress.XtraEditors.TextEdit tfLogin;
+        private DevExpress.XtraEditors.LabelControl labelControl7;
+        private DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider validator;
 
 
     }

@@ -229,6 +229,10 @@ namespace SYS_CHEF
 
 
 
+        [Column] public string login { get; set; }
+
+
+
 
 
 		[Column] public string password { get; set; }
@@ -255,13 +259,13 @@ namespace SYS_CHEF
 
 
 
-		[Column] public DateTime dismissed_at { get; set; }
+		[Column] public DateTime? dismissed_at { get; set; }
 
 
 
 
 
-		[Column] public DateTime last_access_at { get; set; }
+		[Column] public DateTime? last_access_at { get; set; }
 
 
 
@@ -1077,6 +1081,3 @@ namespace SYS_CHEF
 
 
 }
-
-
-

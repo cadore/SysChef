@@ -22,6 +22,8 @@ namespace SYS_CHEF.UI.Users
         {
             CurrentPassword = cp;
             InitializeComponent();
+            this.MinimumSize = this.Size;
+            this.MaximumSize = this.Size;
             this.tfCpNV.Visible = false;
             tfCpNV.Text = CurrentPassword;
             if (string.IsNullOrEmpty(CurrentPassword))

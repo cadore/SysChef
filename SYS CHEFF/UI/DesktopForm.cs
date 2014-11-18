@@ -16,8 +16,6 @@ namespace SYS_CHEF.UI
 {
     public partial class DesktopForm : DevExpress.XtraBars.Ribbon.RibbonForm
     {
-
-        public UserControl currentControl = null;
         public DesktopForm()
         {
             InitializeComponent();
@@ -34,24 +32,22 @@ namespace SYS_CHEF.UI
             else
                 e.Cancel = false;
         }
-
-        public void addControl(UserControl controle)
+        public void addControl(UserControl control)
         {
             try
             {
                 //SplashForms.ShowWaitForm(this);
                 this.pnControl.Controls.Clear();
-                if (controle != null)
+                if (control != null)
                 {
-                    controle.Visible = false;
-                    this.pnControl.Controls.Add(controle);
-                    this.MinimumSize = controle.Size + new Size(0, ribbon.Height) + new Size(20, 35);
+                    control.Visible = false;
+                    this.pnControl.Controls.Add(control);
+                    this.MinimumSize = control.Size + new Size(0, ribbon.Height) + new Size(20, 35);
                 }
                 else
                 {
                     this.MinimumSize = new Size(900, 400);
                 }
-                currentControl = controle;
             }
             catch (Exception ex)
             {
@@ -59,9 +55,9 @@ namespace SYS_CHEF.UI
             }
             finally
             {
-                if (controle != null)
+                if (control != null)
                 {
-                    controle.Visible = true;
+                    control.Visible = true;
                 }
                 //this.pnControl.Controls.Add(this.pnInformacoes);
                 //this.pnInformacoes.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -71,8 +67,8 @@ namespace SYS_CHEF.UI
 
         private void menuUsers_ItemClick(object sender, ItemClickEventArgs e)
         {
-            UsersForm uf = new UsersForm(null) { desk = this };
-            addControl(uf);
+            SearchUsersForm suf = new SearchUsersForm() { desk = this };
+            addControl(suf);
         }
 
         private void pnControl_ControlAdded(object sender, ControlEventArgs e)

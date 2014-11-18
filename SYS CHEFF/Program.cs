@@ -31,8 +31,9 @@ namespace SYS_CHEF
             System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo(AssemblyInfo.AssemblyCulture);
             System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo(AssemblyInfo.AssemblyCulture);
             verefyProcesses();
-
-            Application.Run(new DesktopForm());
+            LoginForm lf = new LoginForm();
+            lf.ShowDialog();
+            Application.Run();
         }
 
         private static void verefyProcesses()
