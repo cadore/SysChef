@@ -107,6 +107,12 @@
     <Compile Include="Models\PetaPoco.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UI\Buttons\Win8\LoginButtons\ButtonCancelLogin.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UI\Buttons\Win8\LoginButtons\ButtonLogin.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="UI\Buttons\ButtonAdd.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -296,6 +302,12 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cancel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\next.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

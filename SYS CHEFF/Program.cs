@@ -33,6 +33,8 @@ namespace SYS_CHEF
             verefyProcesses();
             LoginForm lf = new LoginForm();
             lf.ShowDialog();
+            //DesktopForm d = new DesktopForm();
+            //d.ShowDialog();
             Application.Run();
         }
 

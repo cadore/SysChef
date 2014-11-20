@@ -11,11 +11,16 @@ using DevExpress.XtraBars;
 using DevExpress.XtraEditors;
 using SYS_CHEF.UI.Users;
 using SYS_CHEF.Utils;
+using SYS_CHEF.enums;
 
 namespace SYS_CHEF.UI
 {
     public partial class DesktopForm : DevExpress.XtraBars.Ribbon.RibbonForm
     {
+        public user userLogin = null;
+        public string nameUserLogin = null;
+        public TypeLogin typeLogin;
+
         public DesktopForm()
         {
             InitializeComponent();

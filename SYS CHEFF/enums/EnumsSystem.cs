@@ -23,11 +23,20 @@ namespace SYS_CHEF.enums
 
     public enum LicenseType
     {
-        FreeTest1 = 0,
-        FreeTest2 = 1,
+        Anonymous = 0,
+
+        FreeTest1 = 1,
+        FreeTest2 = 2,
         
-        Basic = 2, 
-        Premium = 3, 
-        Professional = 4
+        Basic = 3, 
+        Premium = 4, 
+        Professional = 5
+    }
+
+    public enum TypeLogin
+    {
+        Anonymous = 0,
+        User = 1,
+        Admin = 2
     }
 }
