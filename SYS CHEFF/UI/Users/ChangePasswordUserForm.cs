@@ -27,7 +27,10 @@ namespace SYS_CHEF.UI.Users
             this.tfCpNV.Visible = false;
             tfCpNV.Text = CurrentPassword;
             if (string.IsNullOrEmpty(CurrentPassword))
+            {
                 tfCurrentPassword.Enabled = false;
+                validatorCurrentPwd.SetValidationRule(tfCurrentPassword, null);
+            }                
             cvrSP = null;
             cvrSP = new CustomValidationRuleSizePwd() 
             { 

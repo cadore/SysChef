@@ -23,7 +23,7 @@ namespace SYS_CHEF.UI
 
         public DesktopForm()
         {
-            InitializeComponent();
+            InitializeComponent(); 
             this.Text = String.Format("{0} - {1} {2} - {3} {4} - Usuário: {5}", "", AssemblyInfo.AssemblyTitle, 
                 AssemblyInfo.AssemblyFileVersion, AssemblyInfo.AssemblyCopyright, AssemblyInfo.AssemblyCompany, "");
         }
@@ -35,7 +35,10 @@ namespace SYS_CHEF.UI
             if (rs == DialogResult.No)
                 e.Cancel = true;
             else
-                e.Cancel = false;
+            {
+                this.DialogResult = DialogResult.Cancel;
+                e.Cancel = false;                
+            }                
         }
         public void addControl(UserControl control)
         {
@@ -58,7 +61,7 @@ namespace SYS_CHEF.UI
             {
                 XtraMessageBox.Show("Ocorreu um erro durante a solicitação.\n" + ex.Message);
             }
-            finally
+            finally 
             {
                 if (control != null)
                 {
@@ -84,6 +87,15 @@ namespace SYS_CHEF.UI
         private void pnControl_SizeChanged(object sender, EventArgs e)
         {
             Centraliza.centralizaControlsPainel((PanelControl)sender);
+        }
+
+        private void DesktopForm_Shown(object sender, EventArgs e)
+        {
+            if (typeLogin == TypeLogin.Anonymous)
+            {
+                XtraMessageBox.Show("Função desabilitada, em implantação.");
+                Environment.Exit(0);
+            }
         }
     }
 }

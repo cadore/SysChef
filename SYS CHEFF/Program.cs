@@ -14,6 +14,7 @@ namespace SYS_CHEF
 {
     static class Program
     {
+        public static DesktopForm desk = null;
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
@@ -30,12 +31,18 @@ namespace SYS_CHEF
             //SplashForms.ShowWaitForm();
             System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo(AssemblyInfo.AssemblyCulture);
             System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo(AssemblyInfo.AssemblyCulture);
-            verefyProcesses();
+            verefyProcesses();            
             LoginForm lf = new LoginForm();
-            lf.ShowDialog();
-            //DesktopForm d = new DesktopForm();
-            //d.ShowDialog();
-            Application.Run();
+            DialogResult rs = lf.ShowDialog();
+            if (rs == DialogResult.OK)
+            {
+                desk.ShowDialog();
+            }
+            else
+            {
+                Exit(0);
+            }
+
         }
 
         private static void verefyProcesses()
@@ -43,8 +50,13 @@ namespace SYS_CHEF
             if (Process.GetProcessesByName(Process.GetCurrentProcess().ProcessName).Length > 1)
             {
                 XtraMessageBox.Show("Já existe uma instância em execução, verifique!", "ATENÇÃO");
-                Environment.Exit(0);
+                Exit(0);
             }
+        }
+
+        static void Exit(int exit)
+        {
+            Environment.Exit(exit);
         }
     }
 }

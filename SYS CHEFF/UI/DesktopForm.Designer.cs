@@ -116,6 +116,7 @@
             this.Text = "DesktopForm";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.DesktopForm_FormClosing);
+            this.Shown += new System.EventHandler(this.DesktopForm_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.ribbon)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnControl)).EndInit();
             this.ResumeLayout(false);

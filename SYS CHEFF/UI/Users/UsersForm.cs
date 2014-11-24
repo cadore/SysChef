@@ -27,15 +27,15 @@ namespace SYS_CHEF.UI.Users
             else
                 if (us.dismissed_at > new DateTime(2014, 01, 01))
                     tfDismissedAt.Properties.ReadOnly = true;
+            NewPassword = us.password;
             this.bdgUsers.DataSource = us;
-
             cvrSL = null;
             cvrSL = new CustomValidationRuleSizeLogin()
             {
                 ErrorText = "Login deve ter no minimo 4 caracteres.",
                 ErrorType = ErrorType.Critical
             };
-            validator.SetValidationRule(tfLogin, cvrSL);
+            validator.SetValidationRule(tfLogin, cvrSL);            
         }
 
         private void btnExit_Click(object sender, EventArgs e)

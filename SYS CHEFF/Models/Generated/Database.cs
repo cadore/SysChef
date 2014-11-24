@@ -273,6 +273,8 @@ namespace SYS_CHEF
 
 		[Column] public string last_access_from { get; set; }
 
+        [Column] public string phone { get; set; }
+
 
 
 	}

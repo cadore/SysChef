@@ -31,8 +31,9 @@ namespace SYS_CHEF.UI.Users
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UsersForm));
-            DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule1 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule2 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
+            DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule3 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
+            DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule1 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
             this.btnSave = new SYS_CHEF.UI.Buttons.ButtonSave();
             this.btnExit = new SYS_CHEF.UI.Buttons.ButtonExit();
@@ -57,6 +58,8 @@ namespace SYS_CHEF.UI.Users
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.validator = new DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(this.components);
+            this.labelControl8 = new DevExpress.XtraEditors.LabelControl();
+            this.tfPhone = new DevExpress.XtraEditors.TextEdit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl3)).BeginInit();
@@ -76,10 +79,13 @@ namespace SYS_CHEF.UI.Users
             ((System.ComponentModel.ISupportInitialize)(this.tfLogin.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tfFullName.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.validator)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tfPhone.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // groupControl1
             // 
+            this.groupControl1.Controls.Add(this.tfPhone);
+            this.groupControl1.Controls.Add(this.labelControl8);
             this.groupControl1.Controls.Add(this.btnSave);
             this.groupControl1.Controls.Add(this.btnExit);
             this.groupControl1.Controls.Add(this.btnChangePassword);
@@ -228,7 +234,7 @@ namespace SYS_CHEF.UI.Users
             // 
             // ckAdmin
             // 
-            this.ckAdmin.DataBindings.Add(new System.Windows.Forms.Binding("Tag", this.bdgUsers, "admin", true));
+            this.ckAdmin.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bdgUsers, "admin", true));
             this.ckAdmin.Location = new System.Drawing.Point(17, 29);
             this.ckAdmin.Name = "ckAdmin";
             this.ckAdmin.Properties.Caption = "Administrador";
@@ -260,9 +266,9 @@ namespace SYS_CHEF.UI.Users
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.tfAdmitedAt.Size = new System.Drawing.Size(100, 20);
             this.tfAdmitedAt.TabIndex = 2;
-            conditionValidationRule1.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
-            conditionValidationRule1.ErrorText = "Informe a data de adimissão";
-            this.validator.SetValidationRule(this.tfAdmitedAt, conditionValidationRule1);
+            conditionValidationRule2.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule2.ErrorText = "Informe a data de adimissão";
+            this.validator.SetValidationRule(this.tfAdmitedAt, conditionValidationRule2);
             // 
             // tfId
             // 
@@ -304,9 +310,9 @@ namespace SYS_CHEF.UI.Users
             this.tfFullName.Name = "tfFullName";
             this.tfFullName.Size = new System.Drawing.Size(381, 20);
             this.tfFullName.TabIndex = 1;
-            conditionValidationRule2.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
-            conditionValidationRule2.ErrorText = "Informe o nome completo do usuário.";
-            this.validator.SetValidationRule(this.tfFullName, conditionValidationRule2);
+            conditionValidationRule3.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule3.ErrorText = "Informe o nome completo do usuário.";
+            this.validator.SetValidationRule(this.tfFullName, conditionValidationRule3);
             // 
             // labelControl7
             // 
@@ -331,6 +337,28 @@ namespace SYS_CHEF.UI.Users
             this.labelControl1.Size = new System.Drawing.Size(77, 13);
             this.labelControl1.TabIndex = 0;
             this.labelControl1.Text = "Nome completo:";
+            // 
+            // labelControl8
+            // 
+            this.labelControl8.Location = new System.Drawing.Point(471, 60);
+            this.labelControl8.Name = "labelControl8";
+            this.labelControl8.Size = new System.Drawing.Size(37, 13);
+            this.labelControl8.TabIndex = 7;
+            this.labelControl8.Text = "Celular:";
+            // 
+            // tfPhone
+            // 
+            this.tfPhone.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bdgUsers, "phone", true));
+            this.tfPhone.Location = new System.Drawing.Point(514, 57);
+            this.tfPhone.Name = "tfPhone";
+            this.tfPhone.Properties.Mask.EditMask = "(\\(11\\)[9][0-9]{4}-[0-9]{4})|(\\(1[2-9]\\) [5-9][0-9]{3}-[0-9]{4})|(\\([2-9][1-9]\\) " +
+    "[5-9][0-9]{3}-[0-9]{4})";
+            this.tfPhone.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
+            this.tfPhone.Size = new System.Drawing.Size(136, 20);
+            this.tfPhone.TabIndex = 8;
+            conditionValidationRule1.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule1.ErrorText = "Informe o numero do telefone do usuário/funcionário!";
+            this.validator.SetValidationRule(this.tfPhone, conditionValidationRule1);
             // 
             // UsersForm
             // 
@@ -362,6 +390,7 @@ namespace SYS_CHEF.UI.Users
             ((System.ComponentModel.ISupportInitialize)(this.tfLogin.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tfFullName.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.validator)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tfPhone.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -392,6 +421,8 @@ namespace SYS_CHEF.UI.Users
         private DevExpress.XtraEditors.TextEdit tfLogin;
         private DevExpress.XtraEditors.LabelControl labelControl7;
         private DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider validator;
+        private DevExpress.XtraEditors.TextEdit tfPhone;
+        private DevExpress.XtraEditors.LabelControl labelControl8;
 
 
     }

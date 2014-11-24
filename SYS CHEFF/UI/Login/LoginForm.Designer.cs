@@ -34,22 +34,23 @@ namespace SYS_CHEF.UI
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoginForm));
             this.tfLogin = new DevExpress.XtraEditors.TextEdit();
             this.lbLogin = new DevExpress.XtraEditors.LabelControl();
-            this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
+            this.groupControl = new DevExpress.XtraEditors.GroupControl();
             this.lbTypeLogin = new DevExpress.XtraEditors.LabelControl();
             this.lbPassword = new DevExpress.XtraEditors.LabelControl();
             this.tfPassword = new DevExpress.XtraEditors.TextEdit();
+            this.validator = new DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(this.components);
             this.btnLogin = new SYS_CHEF.UI.Buttons.Win8.LoginButtons.ButtonLogin();
             this.btnCancelLogin = new SYS_CHEF.UI.Buttons.Win8.LoginButtons.ButtonCancelLogin();
-            this.validator = new DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.tfLogin.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
-            this.groupControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl)).BeginInit();
+            this.groupControl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tfPassword.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.validator)).BeginInit();
             this.SuspendLayout();
             // 
             // tfLogin
             // 
+            this.validator.SetIconAlignment(this.tfLogin, System.Windows.Forms.ErrorIconAlignment.MiddleRight);
             this.tfLogin.Location = new System.Drawing.Point(12, 43);
             this.tfLogin.Name = "tfLogin";
             this.tfLogin.Properties.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(117)))), ((int)(((byte)(199)))));
@@ -60,7 +61,6 @@ namespace SYS_CHEF.UI
             conditionValidationRule1.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
             conditionValidationRule1.ErrorText = "Campo obrigatório para acessar o sistema!";
             this.validator.SetValidationRule(this.tfLogin, conditionValidationRule1);
-            this.validator.SetIconAlignment(tfLogin, ErrorIconAlignment.MiddleRight);
             // 
             // lbLogin
             // 
@@ -75,21 +75,20 @@ namespace SYS_CHEF.UI
             // 
             // groupControl1
             // 
-            this.groupControl1.Appearance.BackColor = System.Drawing.Color.Transparent;
-            this.groupControl1.Appearance.Options.UseBackColor = true;
-            this.groupControl1.Controls.Add(this.btnLogin);
-            this.groupControl1.Controls.Add(this.btnCancelLogin);
-            this.groupControl1.Controls.Add(this.lbTypeLogin);
-            this.groupControl1.Controls.Add(this.lbPassword);
-            this.groupControl1.Controls.Add(this.tfPassword);
-            this.groupControl1.Controls.Add(this.lbLogin);
-            this.groupControl1.Controls.Add(this.tfLogin);
-            this.groupControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupControl1.Location = new System.Drawing.Point(0, 0);
-            this.groupControl1.Name = "groupControl1";
-            this.groupControl1.Size = new System.Drawing.Size(465, 236);
-            this.groupControl1.TabIndex = 2;
-            this.groupControl1.Text = "SysChef - Cadore Tecnologia - Alfa Beta 1";
+            this.groupControl.Appearance.BackColor = System.Drawing.Color.Transparent;
+            this.groupControl.Appearance.Options.UseBackColor = true;
+            this.groupControl.Controls.Add(this.btnLogin);
+            this.groupControl.Controls.Add(this.btnCancelLogin);
+            this.groupControl.Controls.Add(this.lbTypeLogin);
+            this.groupControl.Controls.Add(this.lbPassword);
+            this.groupControl.Controls.Add(this.tfPassword);
+            this.groupControl.Controls.Add(this.lbLogin);
+            this.groupControl.Controls.Add(this.tfLogin);
+            this.groupControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupControl.Location = new System.Drawing.Point(0, 0);
+            this.groupControl.Name = "groupControl1";
+            this.groupControl.Size = new System.Drawing.Size(465, 236);
+            this.groupControl.TabIndex = 2;
             // 
             // lbTypeLogin
             // 
@@ -120,6 +119,7 @@ namespace SYS_CHEF.UI
             this.tfPassword.Properties.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(117)))), ((int)(((byte)(199)))));
             this.tfPassword.Properties.Appearance.Options.UseForeColor = true;
             this.tfPassword.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat;
+            this.tfPassword.Properties.UseSystemPasswordChar = true;
             this.tfPassword.Size = new System.Drawing.Size(442, 22);
             this.tfPassword.TabIndex = 1;
             // 
@@ -165,15 +165,16 @@ namespace SYS_CHEF.UI
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(465, 236);
             this.ControlBox = false;
-            this.Controls.Add(this.groupControl1);
+            this.Controls.Add(this.groupControl);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.KeyPreview = true;
             this.Name = "LoginForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LoginForm_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.tfLogin.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
-            this.groupControl1.ResumeLayout(false);
-            this.groupControl1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl)).EndInit();
+            this.groupControl.ResumeLayout(false);
+            this.groupControl.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tfPassword.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.validator)).EndInit();
             this.ResumeLayout(false);
@@ -184,7 +185,7 @@ namespace SYS_CHEF.UI
 
         private DevExpress.XtraEditors.TextEdit tfLogin;
         private DevExpress.XtraEditors.LabelControl lbLogin;
-        private DevExpress.XtraEditors.GroupControl groupControl1;
+        private DevExpress.XtraEditors.GroupControl groupControl;
         private DevExpress.XtraEditors.LabelControl lbPassword;
         private DevExpress.XtraEditors.TextEdit tfPassword;
         private Buttons.Win8.LoginButtons.ButtonLogin btnLogin;

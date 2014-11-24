@@ -146,10 +146,16 @@
     <Compile Include="UI\DesktopForm.Designer.cs">
       <DependentUpon>DesktopForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\LoginForm.cs">
+    <Compile Include="UI\Login\ConfirmNumberUserForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\LoginForm.Designer.cs">
+    <Compile Include="UI\Login\ConfirmNumberUserForm.Designer.cs">
+      <DependentUpon>ConfirmNumberUserForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Login\LoginForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Login\LoginForm.Designer.cs">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\Users\ChangePasswordUserForm.cs">
@@ -188,7 +194,10 @@
     <EmbeddedResource Include="UI\DesktopForm.resx">
       <DependentUpon>DesktopForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\LoginForm.resx">
+    <EmbeddedResource Include="UI\Login\ConfirmNumberUserForm.resx">
+      <DependentUpon>ConfirmNumberUserForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Login\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Users\ChangePasswordUserForm.resx">
