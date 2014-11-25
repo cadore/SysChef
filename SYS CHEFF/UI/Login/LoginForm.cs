@@ -13,6 +13,8 @@ using SecureApp;
 using SYS_CHEF.Utils;
 using SYS_CHEF.UI.Login;
 using SYS_CHEF.UI.Users;
+using DevExpress.XtraSplashScreen;
+using SYS_CHEF.UI.Utils.SplashScreens;
 
 namespace SYS_CHEF.UI
 {
@@ -43,7 +45,9 @@ namespace SYS_CHEF.UI
                 return;
             if (typeLogin == TypeLogin.User)
             {
+                SplashScreenManager.ShowForm(null, typeof(PleaseWaitForm), false, false, false);
                 user u = user.SingleOrDefault("WHERE login=@0 AND inactive=FALSE", tfLogin.EditValue);
+                SplashScreenManager.CloseForm(false);
                 if (u == null)
                     loginIncorrect();
                 else
@@ -82,8 +86,10 @@ namespace SYS_CHEF.UI
                             DialogResult drcpuf = cpuf.ShowDialog();
                             if (drcpuf == DialogResult.OK)
                             {
+                                SplashScreenManager.ShowForm(null, typeof(PleaseWaitForm), false, false, false);
                                 u.password = new DTICrypto().Cifrar(cpuf.NewPassword, Util.keyCrypto);
                                 u.Update();
+                                SplashScreenManager.CloseForm(false);
                                 XtraMessageBox.Show("Senha definida com sucesso, por favor faça login no sistema!");
                                 this.tfPassword.Focus();
                             }

@@ -35,12 +35,12 @@ namespace SYS_CHEF.UI
             this.tfLogin = new DevExpress.XtraEditors.TextEdit();
             this.lbLogin = new DevExpress.XtraEditors.LabelControl();
             this.groupControl = new DevExpress.XtraEditors.GroupControl();
+            this.btnLogin = new SYS_CHEF.UI.Buttons.Win8.LoginButtons.ButtonLogin();
+            this.btnCancelLogin = new SYS_CHEF.UI.Buttons.Win8.LoginButtons.ButtonCancelLogin();
             this.lbTypeLogin = new DevExpress.XtraEditors.LabelControl();
             this.lbPassword = new DevExpress.XtraEditors.LabelControl();
             this.tfPassword = new DevExpress.XtraEditors.TextEdit();
             this.validator = new DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(this.components);
-            this.btnLogin = new SYS_CHEF.UI.Buttons.Win8.LoginButtons.ButtonLogin();
-            this.btnCancelLogin = new SYS_CHEF.UI.Buttons.Win8.LoginButtons.ButtonCancelLogin();
             ((System.ComponentModel.ISupportInitialize)(this.tfLogin.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl)).BeginInit();
             this.groupControl.SuspendLayout();
@@ -73,7 +73,7 @@ namespace SYS_CHEF.UI
             this.lbLogin.Tag = "o";
             this.lbLogin.Text = "Login:";
             // 
-            // groupControl1
+            // groupControl
             // 
             this.groupControl.Appearance.BackColor = System.Drawing.Color.Transparent;
             this.groupControl.Appearance.Options.UseBackColor = true;
@@ -86,42 +86,9 @@ namespace SYS_CHEF.UI
             this.groupControl.Controls.Add(this.tfLogin);
             this.groupControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupControl.Location = new System.Drawing.Point(0, 0);
-            this.groupControl.Name = "groupControl1";
+            this.groupControl.Name = "groupControl";
             this.groupControl.Size = new System.Drawing.Size(465, 236);
             this.groupControl.TabIndex = 2;
-            // 
-            // lbTypeLogin
-            // 
-            this.lbTypeLogin.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbTypeLogin.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(117)))), ((int)(((byte)(199)))));
-            this.lbTypeLogin.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.lbTypeLogin.Location = new System.Drawing.Point(7, 140);
-            this.lbTypeLogin.Name = "lbTypeLogin";
-            this.lbTypeLogin.Size = new System.Drawing.Size(129, 16);
-            this.lbTypeLogin.TabIndex = 1;
-            this.lbTypeLogin.Text = "Tipo de Login: Usuário";
-            this.lbTypeLogin.Click += new System.EventHandler(this.lbTypeLogin_Click);
-            // 
-            // lbPassword
-            // 
-            this.lbPassword.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(117)))), ((int)(((byte)(199)))));
-            this.lbPassword.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.lbPassword.Location = new System.Drawing.Point(12, 82);
-            this.lbPassword.Name = "lbPassword";
-            this.lbPassword.Size = new System.Drawing.Size(34, 13);
-            this.lbPassword.TabIndex = 1;
-            this.lbPassword.Text = "Senha:";
-            // 
-            // tfPassword
-            // 
-            this.tfPassword.Location = new System.Drawing.Point(12, 101);
-            this.tfPassword.Name = "tfPassword";
-            this.tfPassword.Properties.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(117)))), ((int)(((byte)(199)))));
-            this.tfPassword.Properties.Appearance.Options.UseForeColor = true;
-            this.tfPassword.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat;
-            this.tfPassword.Properties.UseSystemPasswordChar = true;
-            this.tfPassword.Size = new System.Drawing.Size(442, 22);
-            this.tfPassword.TabIndex = 1;
             // 
             // btnLogin
             // 
@@ -156,6 +123,39 @@ namespace SYS_CHEF.UI
             this.btnCancelLogin.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnCancelLogin.UseVisualStyleBackColor = false;
             this.btnCancelLogin.Click += new System.EventHandler(this.btnCancelLogin_Click);
+            // 
+            // lbTypeLogin
+            // 
+            this.lbTypeLogin.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbTypeLogin.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(117)))), ((int)(((byte)(199)))));
+            this.lbTypeLogin.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.lbTypeLogin.Location = new System.Drawing.Point(7, 140);
+            this.lbTypeLogin.Name = "lbTypeLogin";
+            this.lbTypeLogin.Size = new System.Drawing.Size(129, 16);
+            this.lbTypeLogin.TabIndex = 1;
+            this.lbTypeLogin.Text = "Tipo de Login: Usuário";
+            this.lbTypeLogin.Click += new System.EventHandler(this.lbTypeLogin_Click);
+            // 
+            // lbPassword
+            // 
+            this.lbPassword.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(117)))), ((int)(((byte)(199)))));
+            this.lbPassword.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.lbPassword.Location = new System.Drawing.Point(12, 82);
+            this.lbPassword.Name = "lbPassword";
+            this.lbPassword.Size = new System.Drawing.Size(34, 13);
+            this.lbPassword.TabIndex = 1;
+            this.lbPassword.Text = "Senha:";
+            // 
+            // tfPassword
+            // 
+            this.tfPassword.Location = new System.Drawing.Point(12, 101);
+            this.tfPassword.Name = "tfPassword";
+            this.tfPassword.Properties.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(117)))), ((int)(((byte)(199)))));
+            this.tfPassword.Properties.Appearance.Options.UseForeColor = true;
+            this.tfPassword.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat;
+            this.tfPassword.Properties.UseSystemPasswordChar = true;
+            this.tfPassword.Size = new System.Drawing.Size(442, 22);
+            this.tfPassword.TabIndex = 1;
             // 
             // LoginForm
             // 
