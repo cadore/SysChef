@@ -27,11 +27,11 @@ namespace SYS_CHEF.UI.Users
             }
             else if (tfFullName.EditValue != null)
             {
-                bdgUsersList.DataSource = user.Fetch("WHERE full_name ILIKE @0", String.Format("%{0}%", tfFullName.EditValue));
+                bdgUsersList.DataSource = user.Fetch("WHERE full_name ILIKE @0 ORDER BY full_name", String.Format("%{0}%", tfFullName.EditValue));
             }
             else
             {
-                bdgUsersList.DataSource = user.Fetch("");
+                bdgUsersList.DataSource = user.Fetch("ORDER BY full_name");
             }
         }
 

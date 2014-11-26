@@ -140,6 +140,18 @@
     <Compile Include="UI\Buttons\SysButtonUtil.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="UI\Cashier\CloseCashierForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Cashier\CloseCashierForm.Designer.cs">
+      <DependentUpon>CloseCashierForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Cashier\InformValueOpenCashierForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Cashier\InformValueOpenCashierForm.Designer.cs">
+      <DependentUpon>InformValueOpenCashierForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\DesktopForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -197,6 +209,12 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="UI\Buttons\SysButtonUtil.resx" />
+    <EmbeddedResource Include="UI\Cashier\CloseCashierForm.resx">
+      <DependentUpon>CloseCashierForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Cashier\InformValueOpenCashierForm.resx">
+      <DependentUpon>InformValueOpenCashierForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\DesktopForm.resx">
       <DependentUpon>DesktopForm.cs</DependentUpon>
     </EmbeddedResource>

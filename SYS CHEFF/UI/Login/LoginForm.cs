@@ -61,6 +61,13 @@ namespace SYS_CHEF.UI
                         {
                             userLogin = u;
                             nameUserLogin = null;
+
+                            SplashScreenManager.ShowForm(null, typeof(PleaseWaitForm), false, false, false);
+                            u.last_access_at = DateTime.Now;
+                            u.last_access_from = String.Format("{0}({1})", Util.getHostName(), Util.getIpHost());
+                            u.Update();
+                            SplashScreenManager.CloseForm(false);
+
                             showDesktop();
                         }
                         else

@@ -9,8 +9,10 @@ namespace SYS_CHEF
 
 	public partial class SysChefRepo : Database
 	{
-		public SysChefRepo() 
-			: base("postgres")
+        public static string ConnectionString = String.Format("Server={0};Port={1};User id={2};password={3};Database={4};",
+            "localhost", 5432, "postgres", "p@ssw0rd", "syschefsolution");
+        public static string ProviderName = "Npgsql";
+		public SysChefRepo() : base(ConnectionString, ProviderName)
 		{
 			CommonConstruct();
 		}
@@ -957,7 +959,7 @@ namespace SYS_CHEF
 
 
 
-		[Column] public long aponed_by { get; set; }
+		[Column] public long apened_by { get; set; }
 
 
 
@@ -970,6 +972,9 @@ namespace SYS_CHEF
 
 
 		[Column] public decimal value_closing { get; set; }
+
+
+        [Column] public decimal value_opening { get; set; }        
 
 
 
