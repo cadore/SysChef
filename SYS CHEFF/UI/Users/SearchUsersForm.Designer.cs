@@ -221,12 +221,14 @@
             // collast_access_at
             // 
             this.collast_access_at.Caption = "Ultimo acesso em";
+            this.collast_access_at.DisplayFormat.FormatString = "dd/MM/yyyy HH:mm";
+            this.collast_access_at.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
             this.collast_access_at.FieldName = "last_access_at";
             this.collast_access_at.Name = "collast_access_at";
             this.collast_access_at.OptionsColumn.AllowEdit = false;
             this.collast_access_at.Visible = true;
             this.collast_access_at.VisibleIndex = 6;
-            this.collast_access_at.Width = 93;
+            this.collast_access_at.Width = 98;
             // 
             // collast_access_from
             // 
@@ -236,7 +238,7 @@
             this.collast_access_from.OptionsColumn.AllowEdit = false;
             this.collast_access_from.Visible = true;
             this.collast_access_from.VisibleIndex = 7;
-            this.collast_access_from.Width = 167;
+            this.collast_access_from.Width = 162;
             // 
             // panelControl1
             // 

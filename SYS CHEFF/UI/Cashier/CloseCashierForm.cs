@@ -16,6 +16,7 @@ namespace SYS_CHEF.UI.Cashier
     public partial class CloseCashierForm : DevExpress.XtraEditors.XtraForm
     {
         cashier currentCashier = null;
+        public DesktopForm desk = null;
         public CloseCashierForm()
         {
             SplashScreenManager.ShowForm(null, typeof(PleaseWaitForm), false, false, false);
@@ -168,13 +169,14 @@ namespace SYS_CHEF.UI.Cashier
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            this.FormClosing -= CloseCashierForm_FormClosing;
             this.DialogResult = DialogResult.Cancel;
             this.Close();
         }
 
         private void btnCloseAndSaveCashier_Click(object sender, EventArgs e)
         {
+            if (!validator.Validate())
+                return;
             decimal difference = Convert.ToDecimal(tfDifference.Text.Replace("R$", "").Replace(" ", ""));
             if (difference != 0)
             {
@@ -197,11 +199,33 @@ namespace SYS_CHEF.UI.Cashier
                 MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (confirm == DialogResult.No)
                 return;
+            try
+            {
+                currentCashier.closed_at = Program.getDateTime();
+                currentCashier.closed_by = desk.userLogin.id;
+                currentCashier.opened = false;
+                currentCashier.value_closing = Convert.ToDecimal(tfValueInCashier.Text.Replace("R$", "").Replace(" ", ""));
+                currentCashier.Update();
+                this.DialogResult = DialogResult.OK;
+            }
+            catch (Exception ex)
+            {
+                this.DialogResult = DialogResult.Cancel;
+                XtraMessageBox.Show(String.Format("Ocorreu um erro ao fechar o caixa.\n{0}\n\n{1}", 
+                    ex.Message, ex.InnerException));                
+            }
+            finally
+            {
+                this.Close();
+            }            
         }
 
-        private void CloseCashierForm_FormClosing(object sender, FormClosingEventArgs e)
+        private void xtraTabControl_SelectedPageChanged(object sender, DevExpress.XtraTab.TabPageChangedEventArgs e)
         {
-            e.Cancel = true;
+            if (xtraTabControl.SelectedTabPage.Name.Equals("tabPageClousing"))
+                btnCloseAndSaveCashier.Visible = true;
+            else
+                btnCloseAndSaveCashier.Visible = false;
         }
     }
 }

@@ -37,11 +37,18 @@
             this.menuUser = new DevExpress.XtraBars.BarButtonItem();
             this.menuOpenCashier = new DevExpress.XtraBars.BarButtonItem();
             this.menuCloseCashier = new DevExpress.XtraBars.BarButtonItem();
-            this.ribbonPage2 = new DevExpress.XtraBars.Ribbon.RibbonPage();
-            this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
-            this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.menuProducts = new DevExpress.XtraBars.BarButtonItem();
+            this.menuInputStock = new DevExpress.XtraBars.BarButtonItem();
+            this.menuOutputStock = new DevExpress.XtraBars.BarButtonItem();
+            this.menuBuyProducts = new DevExpress.XtraBars.BarButtonItem();
+            this.rpAttendance = new DevExpress.XtraBars.Ribbon.RibbonPage();
+            this.rpFinancial = new DevExpress.XtraBars.Ribbon.RibbonPage();
+            this.rpgCashier = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.rpAdmin = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.rpgUsers = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.rpStock = new DevExpress.XtraBars.Ribbon.RibbonPage();
+            this.rpgProducts = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.rpgTransactions = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonStatusBar = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
             this.pnControl = new DevExpress.XtraEditors.PanelControl();
             this.buttonAdd1 = new SYS_CHEF.UI.Buttons.ButtonAdd();
@@ -58,14 +65,19 @@
             this.ribbon.ExpandCollapseItem,
             this.menuUser,
             this.menuOpenCashier,
-            this.menuCloseCashier});
+            this.menuCloseCashier,
+            this.menuProducts,
+            this.menuInputStock,
+            this.menuOutputStock,
+            this.menuBuyProducts});
             this.ribbon.Location = new System.Drawing.Point(0, 0);
-            this.ribbon.MaxItemId = 4;
+            this.ribbon.MaxItemId = 8;
             this.ribbon.Name = "ribbon";
             this.ribbon.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
-            this.ribbonPage2,
-            this.ribbonPage1,
-            this.rpAdmin});
+            this.rpAttendance,
+            this.rpFinancial,
+            this.rpAdmin,
+            this.rpStock});
             this.ribbon.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonControlStyle.Office2013;
             this.ribbon.Size = new System.Drawing.Size(927, 144);
             this.ribbon.StatusBar = this.ribbonStatusBar;
@@ -124,26 +136,52 @@
             this.menuCloseCashier.Name = "menuCloseCashier";
             this.menuCloseCashier.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.menuCloseCashier_ItemClick);
             // 
-            // ribbonPage2
+            // menuProducts
             // 
-            this.ribbonPage2.Name = "ribbonPage2";
-            this.ribbonPage2.Text = "Atendimento";
+            this.menuProducts.Caption = "Produtos";
+            this.menuProducts.Id = 4;
+            this.menuProducts.Name = "menuProducts";
+            this.menuProducts.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.menuProducts.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.menuProducts_ItemClick);
             // 
-            // ribbonPage1
+            // menuInputStock
             // 
-            this.ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
-            this.ribbonPageGroup1});
-            this.ribbonPage1.Name = "ribbonPage1";
-            this.ribbonPage1.Text = "Financeiro";
+            this.menuInputStock.Caption = "Entrada de Estoque";
+            this.menuInputStock.Id = 5;
+            this.menuInputStock.Name = "menuInputStock";
             // 
-            // ribbonPageGroup1
+            // menuOutputStock
             // 
-            this.ribbonPageGroup1.AllowTextClipping = false;
-            this.ribbonPageGroup1.ItemLinks.Add(this.menuOpenCashier);
-            this.ribbonPageGroup1.ItemLinks.Add(this.menuCloseCashier);
-            this.ribbonPageGroup1.Name = "ribbonPageGroup1";
-            this.ribbonPageGroup1.ShowCaptionButton = false;
-            this.ribbonPageGroup1.Text = "Caixa";
+            this.menuOutputStock.Caption = "Saida de Estoque";
+            this.menuOutputStock.Id = 6;
+            this.menuOutputStock.Name = "menuOutputStock";
+            // 
+            // menuBuyProducts
+            // 
+            this.menuBuyProducts.Caption = "Compra de Produtos";
+            this.menuBuyProducts.Id = 7;
+            this.menuBuyProducts.Name = "menuBuyProducts";
+            // 
+            // rpAttendance
+            // 
+            this.rpAttendance.Name = "rpAttendance";
+            this.rpAttendance.Text = "Atendimento";
+            // 
+            // rpFinancial
+            // 
+            this.rpFinancial.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
+            this.rpgCashier});
+            this.rpFinancial.Name = "rpFinancial";
+            this.rpFinancial.Text = "Financeiro";
+            // 
+            // rpgCashier
+            // 
+            this.rpgCashier.AllowTextClipping = false;
+            this.rpgCashier.ItemLinks.Add(this.menuOpenCashier);
+            this.rpgCashier.ItemLinks.Add(this.menuCloseCashier);
+            this.rpgCashier.Name = "rpgCashier";
+            this.rpgCashier.ShowCaptionButton = false;
+            this.rpgCashier.Text = "Caixa";
             // 
             // rpAdmin
             // 
@@ -159,6 +197,31 @@
             this.rpgUsers.Name = "rpgUsers";
             this.rpgUsers.ShowCaptionButton = false;
             this.rpgUsers.Text = "Usuários";
+            // 
+            // rpStock
+            // 
+            this.rpStock.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
+            this.rpgProducts,
+            this.rpgTransactions});
+            this.rpStock.Name = "rpStock";
+            this.rpStock.Text = "Estoque";
+            // 
+            // rpgProducts
+            // 
+            this.rpgProducts.AllowTextClipping = false;
+            this.rpgProducts.ItemLinks.Add(this.menuProducts);
+            this.rpgProducts.Name = "rpgProducts";
+            this.rpgProducts.ShowCaptionButton = false;
+            this.rpgProducts.Text = "Produtos";
+            // 
+            // rpgTransactions
+            // 
+            this.rpgTransactions.AllowTextClipping = false;
+            this.rpgTransactions.ItemLinks.Add(this.menuInputStock);
+            this.rpgTransactions.ItemLinks.Add(this.menuOutputStock);
+            this.rpgTransactions.Name = "rpgTransactions";
+            this.rpgTransactions.ShowCaptionButton = false;
+            this.rpgTransactions.Text = "Transações de Estoque";
             // 
             // ribbonStatusBar
             // 
@@ -231,10 +294,17 @@
         private DevExpress.XtraBars.Ribbon.BackstageViewItemSeparator backstageViewItemSeparator1;
         private Buttons.ButtonAdd buttonAdd1;
         private DevExpress.XtraBars.Ribbon.BackstageViewButtonItem backstageChangeUser;
-        private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPage2;
-        private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPage1;
+        private DevExpress.XtraBars.Ribbon.RibbonPage rpAttendance;
+        private DevExpress.XtraBars.Ribbon.RibbonPage rpFinancial;
         private DevExpress.XtraBars.BarButtonItem menuOpenCashier;
         private DevExpress.XtraBars.BarButtonItem menuCloseCashier;
-        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup1;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup rpgCashier;
+        private DevExpress.XtraBars.BarButtonItem menuProducts;
+        private DevExpress.XtraBars.BarButtonItem menuInputStock;
+        private DevExpress.XtraBars.BarButtonItem menuOutputStock;
+        private DevExpress.XtraBars.Ribbon.RibbonPage rpStock;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup rpgProducts;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup rpgTransactions;
+        private DevExpress.XtraBars.BarButtonItem menuBuyProducts;
     }
 }

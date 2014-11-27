@@ -95,6 +95,7 @@ namespace SYS_CHEF
 			public static Page<T> Page(long page, long itemsPerPage, Sql sql) { return repo.Page<T>(page, itemsPerPage, sql); }
 			public static IEnumerable<T> Query(string sql, params object[] args) { return repo.Query<T>(sql, args); }
 			public static IEnumerable<T> Query(Sql sql) { return repo.Query<T>(sql); }
+            public static String Concat(object text) { return String.Format("%{0}%", text); }
 
 		}
 
@@ -190,6 +191,11 @@ namespace SYS_CHEF
 
 
 		[Column] public long category_id { get; set; }
+
+
+
+
+        [Column] public long unity_id { get; set; }
 
 
 
@@ -711,102 +717,13 @@ namespace SYS_CHEF
 	[TableName("tables")]
 
 
-	[PrimaryKey("id", autoIncrement=false)]
+	[PrimaryKey("id")]
 
 	[ExplicitColumns]
     public partial class table : SysChefRepo.Record<table>  
     {
-
-
-
-		[Column] public string table_catalog { get; set; }
-
-
-
-
-
-		[Column] public string table_schema { get; set; }
-
-
-
-
-
-		[Column] public string table_name { get; set; }
-
-
-
-
-
-		[Column] public string table_type { get; set; }
-
-
-
-
-
-		[Column] public string self_referencing_column_name { get; set; }
-
-
-
-
-
-		[Column] public string reference_generation { get; set; }
-
-
-
-
-
-		[Column] public string user_defined_type_catalog { get; set; }
-
-
-
-
-
-		[Column] public string user_defined_type_schema { get; set; }
-
-
-
-
-
-		[Column] public string user_defined_type_name { get; set; }
-
-
-
-
-
-		[Column] public string is_insertable_into { get; set; }
-
-
-
-
-
-		[Column] public string is_typed { get; set; }
-
-
-
-
-
-		[Column] public string commit_action { get; set; }
-
-
-
-
-
-		[Column] public string id { get; set; }
-
-
-
-
-
-		[Column] public int number { get; set; }
-
-
-
-
-
-		[Column] public int location { get; set; }
-
-
-
+		[Column] public long id { get; set; }
+        [Column] public int number_of_tables { get; set; }
 	}
 
     
@@ -1085,6 +1002,30 @@ namespace SYS_CHEF
 
 
 	}
+
+
+
+    [TableName("unity_products")]
+
+
+    [PrimaryKey("id")]
+
+
+
+    [ExplicitColumns]
+    public partial class unity_products : SysChefRepo.Record<unity_products>
+    {
+
+
+
+        [Column] public long id { get; set; }
+
+
+
+        [Column] public string unity { get; set; }
+
+
+    }
 
 
 }

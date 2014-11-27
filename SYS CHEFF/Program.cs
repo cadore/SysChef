@@ -2,6 +2,7 @@
 using DevExpress.Skins;
 using DevExpress.UserSkins;
 using DevExpress.XtraEditors;
+using PetaPoco;
 using SYS_CHEF.UI;
 using System;
 using System.Collections.Generic;
@@ -16,6 +17,7 @@ namespace SYS_CHEF
     {
         public static DesktopForm desk = null;
         public static bool changeUser = false;
+        public static Database db;
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
@@ -33,7 +35,20 @@ namespace SYS_CHEF
             System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo(AssemblyInfo.AssemblyCulture);
             System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo(AssemblyInfo.AssemblyCulture);
             verefyProcesses();
+            openConnection();
             startApplication();
+        }
+
+        private static void openConnection()
+        {
+            try
+            {
+                db = new Database(SysChefRepo.ConnectionString, SysChefRepo.ProviderName);
+            }
+            catch (Exception)
+            {
+                XtraMessageBox.Show(String.Format("Ocorreu um problema ao conectar com o banco de dados."));
+            }
         }
 
         private static void startApplication()
@@ -65,6 +80,18 @@ namespace SYS_CHEF
         static void Exit(int exit)
         {
             Environment.Exit(exit);
+        }
+
+        public static DateTime getDateTime()
+        {
+            try
+            {
+                return db.ExecuteScalar<DateTime>("SELECT LOCALTIMESTAMP");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message, ex.InnerException);
+            }
         }
     }
 }

@@ -16,6 +16,7 @@ using DevExpress.XtraSplashScreen;
 using SYS_CHEF.UI.Utils.SplashScreens;
 using PetaPoco;
 using SYS_CHEF.UI.Cashier;
+using SYS_CHEF.UI.Products;
 
 namespace SYS_CHEF.UI
 {
@@ -24,32 +25,11 @@ namespace SYS_CHEF.UI
         public user userLogin = null;
         public string nameUserLogin = null;
         public TypeLogin typeLogin;
-        Database db;
 
         public DesktopForm()
         {
             SplashScreenManager.ShowForm(null, typeof(PleaseWaitForm), false, false, false);
-            InitializeComponent();
-            try
-            {
-                db = new Database(SysChefRepo.ConnectionString, SysChefRepo.ProviderName);
-            }
-            catch (Exception)
-            {
-                XtraMessageBox.Show(String.Format("Ocorreu um problema ao conectar com o banco de dados."));
-            }
-        }
-
-        public DateTime getDateTime()
-        {
-            try
-            {
-                return db.ExecuteScalar<DateTime>("SELECT LOCALTIMESTAMP");
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message, ex.InnerException);
-            }
+            InitializeComponent();            
         }
 
         private void DesktopForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -151,7 +131,7 @@ namespace SYS_CHEF.UI
 
         private void menuOpenCashier_ItemClick(object sender, ItemClickEventArgs e)
         {
-            int cashier_opened = db.ExecuteScalar<int>("SELECT COUNT(id) FROM cashiers WHERE opened = TRUE");
+            int cashier_opened = Program.db.ExecuteScalar<int>("SELECT COUNT(id) FROM cashiers WHERE opened = TRUE");
             if (cashier_opened > 0)
             {
                 XtraMessageBox.Show("Já existe um caixa aberto!");
@@ -170,7 +150,7 @@ namespace SYS_CHEF.UI
                     apened_by = userLogin.id,
                     locked = false,
                     opened = true,
-                    opened_at = getDateTime(),
+                    opened_at = Program.getDateTime(),
                     responsible = userLogin.id,
                     value_opening = ivocf.ValueOpening
                 };
@@ -185,14 +165,23 @@ namespace SYS_CHEF.UI
 
         private void menuCloseCashier_ItemClick(object sender, ItemClickEventArgs e)
         {
-            int cashier_opened = db.ExecuteScalar<int>("SELECT COUNT(id) FROM cashiers WHERE opened = TRUE");
+            int cashier_opened = Program.db.ExecuteScalar<int>("SELECT COUNT(id) FROM cashiers WHERE opened = TRUE");
             if (cashier_opened == 0)
             {
                 XtraMessageBox.Show("Não existe um caixa aberto!");
                 return;
             }
-            CloseCashierForm ccf = new CloseCashierForm();
-            ccf.ShowDialog();
+            CloseCashierForm ccf = new CloseCashierForm() { desk = this };
+            if (ccf.ShowDialog() == DialogResult.OK)
+            {
+                XtraMessageBox.Show("Caixa fechado com sucesso!");
+            }
+        }
+
+        private void menuProducts_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            SearchProductsForm spf = new SearchProductsForm() { desk = this };
+            addControl(spf);
         }
     }
 }

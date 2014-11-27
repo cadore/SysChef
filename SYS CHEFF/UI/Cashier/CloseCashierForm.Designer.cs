@@ -28,21 +28,23 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CloseCashierForm));
+            DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule2 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
             this.btnCloseAndSaveCashier = new SYS_CHEF.UI.Buttons.ButtonSave();
             this.btnCancel = new SYS_CHEF.UI.Buttons.ButtonExit();
-            this.xtraTabControl1 = new DevExpress.XtraTab.XtraTabControl();
-            this.xtraTabPage1 = new DevExpress.XtraTab.XtraTabPage();
+            this.xtraTabControl = new DevExpress.XtraTab.XtraTabControl();
+            this.tabPageClousing = new DevExpress.XtraTab.XtraTabPage();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
-            this.btnGetValueCountMoney = new DevExpress.XtraEditors.SimpleButton();
-            this.tfValueInCashier = new DevExpress.XtraEditors.TextEdit();
-            this.tfDifference = new DevExpress.XtraEditors.TextEdit();
             this.tfValueSystem = new DevExpress.XtraEditors.TextEdit();
+            this.btnGetValueCountMoney = new DevExpress.XtraEditors.SimpleButton();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
-            this.xtraTabPage2 = new DevExpress.XtraTab.XtraTabPage();
+            this.tfValueInCashier = new DevExpress.XtraEditors.TextEdit();
+            this.tfDifference = new DevExpress.XtraEditors.TextEdit();
+            this.tabPageCounter = new DevExpress.XtraTab.XtraTabPage();
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
             this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
             this.labelControl26 = new DevExpress.XtraEditors.LabelControl();
@@ -95,17 +97,18 @@
             this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
+            this.validator = new DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).BeginInit();
-            this.xtraTabControl1.SuspendLayout();
-            this.xtraTabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl)).BeginInit();
+            this.xtraTabControl.SuspendLayout();
+            this.tabPageClousing.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tfValueSystem.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tfValueInCashier.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tfDifference.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tfValueSystem.Properties)).BeginInit();
-            this.xtraTabPage2.SuspendLayout();
+            this.tabPageCounter.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
             this.panelControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
@@ -135,13 +138,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.tfQnt010.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tfTotal005.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tfQnt005.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.validator)).BeginInit();
             this.SuspendLayout();
             // 
             // groupControl1
             // 
             this.groupControl1.Controls.Add(this.btnCloseAndSaveCashier);
             this.groupControl1.Controls.Add(this.btnCancel);
-            this.groupControl1.Controls.Add(this.xtraTabControl1);
+            this.groupControl1.Controls.Add(this.xtraTabControl);
             this.groupControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupControl1.Location = new System.Drawing.Point(0, 0);
             this.groupControl1.Name = "groupControl1";
@@ -183,89 +187,67 @@
             this.btnCancel.UseVisualStyleBackColor = false;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
-            // xtraTabControl1
+            // xtraTabControl
             // 
-            this.xtraTabControl1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.xtraTabControl1.Location = new System.Drawing.Point(2, 21);
-            this.xtraTabControl1.Name = "xtraTabControl1";
-            this.xtraTabControl1.SelectedTabPage = this.xtraTabPage1;
-            this.xtraTabControl1.Size = new System.Drawing.Size(657, 212);
-            this.xtraTabControl1.TabIndex = 0;
-            this.xtraTabControl1.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
-            this.xtraTabPage1,
-            this.xtraTabPage2});
+            this.xtraTabControl.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.xtraTabControl.Location = new System.Drawing.Point(2, 21);
+            this.xtraTabControl.Name = "xtraTabControl";
+            this.xtraTabControl.SelectedTabPage = this.tabPageClousing;
+            this.xtraTabControl.Size = new System.Drawing.Size(657, 212);
+            this.xtraTabControl.TabIndex = 0;
+            this.xtraTabControl.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
+            this.tabPageClousing,
+            this.tabPageCounter});
+            this.xtraTabControl.SelectedPageChanged += new DevExpress.XtraTab.TabPageChangedEventHandler(this.xtraTabControl_SelectedPageChanged);
             // 
-            // xtraTabPage1
+            // tabPageClousing
             // 
-            this.xtraTabPage1.Controls.Add(this.panelControl1);
-            this.xtraTabPage1.Name = "xtraTabPage1";
-            this.xtraTabPage1.Size = new System.Drawing.Size(651, 184);
-            this.xtraTabPage1.Text = "Fechamento de caixa";
+            this.tabPageClousing.Controls.Add(this.panelControl1);
+            this.tabPageClousing.Name = "tabPageClousing";
+            this.tabPageClousing.Size = new System.Drawing.Size(651, 184);
+            this.tabPageClousing.Text = "Fechamento de caixa";
             // 
             // panelControl1
             // 
             this.panelControl1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.panelControl1.Controls.Add(this.btnGetValueCountMoney);
-            this.panelControl1.Controls.Add(this.tfValueInCashier);
-            this.panelControl1.Controls.Add(this.tfDifference);
             this.panelControl1.Controls.Add(this.tfValueSystem);
+            this.panelControl1.Controls.Add(this.btnGetValueCountMoney);
             this.panelControl1.Controls.Add(this.labelControl3);
             this.panelControl1.Controls.Add(this.labelControl2);
             this.panelControl1.Controls.Add(this.labelControl1);
+            this.panelControl1.Controls.Add(this.tfValueInCashier);
+            this.panelControl1.Controls.Add(this.tfDifference);
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelControl1.Location = new System.Drawing.Point(0, 0);
             this.panelControl1.Name = "panelControl1";
             this.panelControl1.Size = new System.Drawing.Size(651, 184);
             this.panelControl1.TabIndex = 0;
             // 
-            // btnGetValueCountMoney
-            // 
-            this.btnGetValueCountMoney.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat;
-            this.btnGetValueCountMoney.Location = new System.Drawing.Point(280, 42);
-            this.btnGetValueCountMoney.Name = "btnGetValueCountMoney";
-            this.btnGetValueCountMoney.Size = new System.Drawing.Size(128, 16);
-            this.btnGetValueCountMoney.TabIndex = 3;
-            this.btnGetValueCountMoney.Text = "Obter valor do contador";
-            this.btnGetValueCountMoney.Click += new System.EventHandler(this.btnGetValueCountMoney_Click);
-            // 
-            // tfValueInCashier
-            // 
-            this.tfValueInCashier.Location = new System.Drawing.Point(115, 39);
-            this.tfValueInCashier.Name = "tfValueInCashier";
-            this.tfValueInCashier.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tfValueInCashier.Properties.Appearance.Options.UseFont = true;
-            this.tfValueInCashier.Properties.Mask.EditMask = "c";
-            this.tfValueInCashier.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
-            this.tfValueInCashier.Size = new System.Drawing.Size(159, 22);
-            this.tfValueInCashier.TabIndex = 2;
-            this.tfValueInCashier.EditValueChanged += new System.EventHandler(this.tfValueInCashier_EditValueChanged);
-            // 
-            // tfDifference
-            // 
-            this.tfDifference.EditValue = "0";
-            this.tfDifference.Location = new System.Drawing.Point(115, 67);
-            this.tfDifference.Name = "tfDifference";
-            this.tfDifference.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tfDifference.Properties.Appearance.Options.UseFont = true;
-            this.tfDifference.Properties.ReadOnly = true;
-            this.tfDifference.Size = new System.Drawing.Size(159, 22);
-            this.tfDifference.TabIndex = 1;
-            // 
             // tfValueSystem
             // 
             this.tfValueSystem.EditValue = "0";
-            this.tfValueSystem.Location = new System.Drawing.Point(115, 11);
+            this.tfValueSystem.Location = new System.Drawing.Point(132, 18);
             this.tfValueSystem.Name = "tfValueSystem";
             this.tfValueSystem.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tfValueSystem.Properties.Appearance.Options.UseFont = true;
             this.tfValueSystem.Properties.ReadOnly = true;
-            this.tfValueSystem.Size = new System.Drawing.Size(159, 22);
+            this.tfValueSystem.Size = new System.Drawing.Size(170, 22);
             this.tfValueSystem.TabIndex = 1;
+            // 
+            // btnGetValueCountMoney
+            // 
+            this.btnGetValueCountMoney.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat;
+            this.btnGetValueCountMoney.Location = new System.Drawing.Point(132, 69);
+            this.btnGetValueCountMoney.Name = "btnGetValueCountMoney";
+            this.btnGetValueCountMoney.Size = new System.Drawing.Size(170, 16);
+            this.btnGetValueCountMoney.TabIndex = 3;
+            this.btnGetValueCountMoney.Text = "Obter valor do contador";
+            this.btnGetValueCountMoney.Click += new System.EventHandler(this.btnGetValueCountMoney_Click);
             // 
             // labelControl3
             // 
             this.labelControl3.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl3.Location = new System.Drawing.Point(48, 68);
+            this.labelControl3.Location = new System.Drawing.Point(65, 92);
             this.labelControl3.Name = "labelControl3";
             this.labelControl3.Size = new System.Drawing.Size(59, 16);
             this.labelControl3.TabIndex = 0;
@@ -274,7 +256,7 @@
             // labelControl2
             // 
             this.labelControl2.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl2.Location = new System.Drawing.Point(21, 40);
+            this.labelControl2.Location = new System.Drawing.Point(38, 47);
             this.labelControl2.Name = "labelControl2";
             this.labelControl2.Size = new System.Drawing.Size(86, 16);
             this.labelControl2.TabIndex = 0;
@@ -283,18 +265,50 @@
             // labelControl1
             // 
             this.labelControl1.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl1.Location = new System.Drawing.Point(6, 12);
+            this.labelControl1.Location = new System.Drawing.Point(23, 19);
             this.labelControl1.Name = "labelControl1";
             this.labelControl1.Size = new System.Drawing.Size(101, 16);
             this.labelControl1.TabIndex = 0;
             this.labelControl1.Text = "Valor do sistema:";
             // 
-            // xtraTabPage2
+            // tfValueInCashier
             // 
-            this.xtraTabPage2.Controls.Add(this.panelControl2);
-            this.xtraTabPage2.Name = "xtraTabPage2";
-            this.xtraTabPage2.Size = new System.Drawing.Size(651, 184);
-            this.xtraTabPage2.Text = "Contador de Dinheiro";
+            this.tfValueInCashier.Location = new System.Drawing.Point(132, 46);
+            this.tfValueInCashier.Name = "tfValueInCashier";
+            this.tfValueInCashier.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tfValueInCashier.Properties.Appearance.Options.UseFont = true;
+            this.tfValueInCashier.Properties.Mask.EditMask = "c";
+            this.tfValueInCashier.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
+            this.tfValueInCashier.Size = new System.Drawing.Size(170, 22);
+            this.tfValueInCashier.TabIndex = 2;
+            conditionValidationRule2.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.Greater;
+            conditionValidationRule2.ErrorText = "Informe o valor do fechamento.";
+            conditionValidationRule2.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
+            conditionValidationRule2.Value1 = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.validator.SetValidationRule(this.tfValueInCashier, conditionValidationRule2);
+            this.tfValueInCashier.EditValueChanged += new System.EventHandler(this.tfValueInCashier_EditValueChanged);
+            // 
+            // tfDifference
+            // 
+            this.tfDifference.EditValue = "0";
+            this.tfDifference.Location = new System.Drawing.Point(132, 91);
+            this.tfDifference.Name = "tfDifference";
+            this.tfDifference.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tfDifference.Properties.Appearance.Options.UseFont = true;
+            this.tfDifference.Properties.ReadOnly = true;
+            this.tfDifference.Size = new System.Drawing.Size(170, 22);
+            this.tfDifference.TabIndex = 1;
+            // 
+            // tabPageCounter
+            // 
+            this.tabPageCounter.Controls.Add(this.panelControl2);
+            this.tabPageCounter.Name = "tabPageCounter";
+            this.tabPageCounter.Size = new System.Drawing.Size(651, 184);
+            this.tabPageCounter.Text = "Contador de Dinheiro";
             // 
             // panelControl2
             // 
@@ -863,19 +877,18 @@
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CloseCashierForm_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
             this.groupControl1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).EndInit();
-            this.xtraTabControl1.ResumeLayout(false);
-            this.xtraTabPage1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl)).EndInit();
+            this.xtraTabControl.ResumeLayout(false);
+            this.tabPageClousing.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
             this.panelControl1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tfValueSystem.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tfValueInCashier.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tfDifference.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tfValueSystem.Properties)).EndInit();
-            this.xtraTabPage2.ResumeLayout(false);
+            this.tabPageCounter.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
             this.panelControl2.ResumeLayout(false);
             this.panelControl2.PerformLayout();
@@ -907,6 +920,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.tfQnt010.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tfTotal005.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tfQnt005.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.validator)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -914,9 +928,9 @@
         #endregion
 
         private DevExpress.XtraEditors.GroupControl groupControl1;
-        private DevExpress.XtraTab.XtraTabControl xtraTabControl1;
-        private DevExpress.XtraTab.XtraTabPage xtraTabPage1;
-        private DevExpress.XtraTab.XtraTabPage xtraTabPage2;
+        private DevExpress.XtraTab.XtraTabControl xtraTabControl;
+        private DevExpress.XtraTab.XtraTabPage tabPageClousing;
+        private DevExpress.XtraTab.XtraTabPage tabPageCounter;
         private DevExpress.XtraEditors.PanelControl panelControl1;
         private DevExpress.XtraEditors.TextEdit tfValueInCashier;
         private DevExpress.XtraEditors.TextEdit tfValueSystem;
@@ -979,5 +993,6 @@
         private DevExpress.XtraEditors.LabelControl labelControl4;
         private Buttons.ButtonExit btnCancel;
         private Buttons.ButtonSave btnCloseAndSaveCashier;
+        private DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider validator;
     }
 }
