@@ -17,19 +17,25 @@ using SYS_CHEF.UI.Utils.SplashScreens;
 using PetaPoco;
 using SYS_CHEF.UI.Cashier;
 using SYS_CHEF.UI.Products;
+using SYS_CHEF.UI.Products.Transactions;
+using SYS_CHEF.UI.Cashier.InputOutput;
+using SYS_CHEF.UI.Sales;
 
 namespace SYS_CHEF.UI
 {
     public partial class DesktopForm : DevExpress.XtraBars.Ribbon.RibbonForm
     {
-        public user userLogin = null;
-        public string nameUserLogin = null;
-        public TypeLogin typeLogin;
 
         public DesktopForm()
         {
             SplashScreenManager.ShowForm(null, typeof(PleaseWaitForm), false, false, false);
-            InitializeComponent();            
+            InitializeComponent();
+            verifyLicense();
+        }
+
+        private void verifyLicense()
+        {
+            throw new NotImplementedException();
         }
 
         private void DesktopForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -96,25 +102,25 @@ namespace SYS_CHEF.UI
         private void DesktopForm_Shown(object sender, EventArgs e)
         {
             string usr = "";
-            if (typeLogin == TypeLogin.Anonymous)
+            if (Program.typeLogin == TypeLogin.Anonymous)
             {
-                usr = nameUserLogin;
+                usr = Program.nameUserLogin;
                 XtraMessageBox.Show("Função desabilitada, em implantação.");
                 Environment.Exit(0);
             }
             else
             {
-                usr = userLogin.login;
+                usr = Program.userLogin.login;
             }
             this.Text = String.Format("{0} - {1} {2} - {3} {4} - Usuário: {5}", "", AssemblyInfo.AssemblyTitle,
                 AssemblyInfo.AssemblyFileVersion, AssemblyInfo.AssemblyCopyright, AssemblyInfo.AssemblyCompany, usr);
 
-            if (!userLogin.admin)
+            if (!Program.userLogin.admin)
             {
                 rpAdmin.Visible = false;
             }
 
-            SplashScreenManager.CloseForm();
+            SplashScreenManager.CloseForm(false);
         }
 
         private void backstageChangeUser_ItemClick(object sender, DevExpress.XtraBars.Ribbon.BackstageViewItemEventArgs e)
@@ -147,11 +153,11 @@ namespace SYS_CHEF.UI
             {
                 cashier cash = new cashier()
                 {
-                    apened_by = userLogin.id,
+                    apened_by = Program.userLogin.id,
                     locked = false,
                     opened = true,
                     opened_at = Program.getDateTime(),
-                    responsible = userLogin.id,
+                    responsible = Program.userLogin.id,
                     value_opening = ivocf.ValueOpening
                 };
                 cash.Insert();
@@ -182,6 +188,75 @@ namespace SYS_CHEF.UI
         {
             SearchProductsForm spf = new SearchProductsForm() { desk = this };
             addControl(spf);
+        }
+
+        private void menuInputStock_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            InputStockForm isf = new InputStockForm() { desk = this };
+            addControl(isf);
+        }
+
+        private void menuOutputStock_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            OutputStockForm osf = new OutputStockForm() { desk = this };
+            addControl(osf);
+        }
+
+        private void menuInputCashier_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            InputCashierForm icf = new InputCashierForm() { desk = this };
+            if (icf.ShowDialog() == DialogResult.Cancel)
+                return;
+            try
+            {
+                input_cashier ic = new input_cashier()
+                {
+                    cashier_id = Program.getOpenCashier().id,
+                    input_at = Program.getDateTime(),
+                    user_id = Program.userLogin.id,
+                    value = icf.Value,
+                    reason = icf.Reason
+                };
+                ic.Save();
+                XtraMessageBox.Show("Entrada de Dinheiro salva com sucesso!");
+            }
+            catch (Exception ex)
+            {
+                XtraMessageBox.Show(String.Format("Ocorreu um erro ao salvar a entrada de dinheiro no caixa.\n{0}\n\n{1}",
+                    ex.Message, ex.InnerException));
+            }
+        }
+
+        private void menuOutputCashier_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            OutputCashierForm ocf = new OutputCashierForm() { desk = this };
+            if (ocf.ShowDialog() == DialogResult.Cancel)
+                return;
+            try
+            {
+                output_cashier oc = new output_cashier()
+                {
+                    cashier_id = Program.getOpenCashier().id,
+                    output_at = Program.getDateTime(),
+                    user_id = Program.userLogin.id,
+                    value = ocf.Value,
+                    reason = ocf.Reason
+                };
+                oc.Save();
+                XtraMessageBox.Show("Saída de Dinheiro salva com sucesso!");
+            }
+            catch (Exception ex)
+            {
+                XtraMessageBox.Show(String.Format("Ocorreu um erro ao salvar a entrada de dinheiro no caixa.\n{0}\n\n{1}",
+                    ex.Message, ex.InnerException));
+            }
+        }
+
+        private void menuSaleDirect_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            SplashScreenManager.ShowForm(null, typeof(PleaseWaitForm), false, false, false);
+            SalesDirectForm sdf = new SalesDirectForm() { };
+            sdf.ShowDialog();
         }
     }
 }

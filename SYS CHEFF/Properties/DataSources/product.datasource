@@ -16,6 +16,13 @@
                </ControlSetting>
             </ControlSettings>
          </PropertyUISetting>
+         <PropertyUISetting Name="service">
+            <ControlSettings>
+               <ControlSetting ArtifactName="Microsoft:System.Windows.Forms:Form">
+                  <BindableControlInfo Name="CheckEdit" Type="DevExpress.XtraEditors.CheckEdit" AssemblyName="DevExpress.XtraEditors.v14.1" />
+               </ControlSetting>
+            </ControlSettings>
+         </PropertyUISetting>
       </PropertyUISettings>
    </TypeUISetting>
 </GenericObjectDataSource>

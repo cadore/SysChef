@@ -42,13 +42,11 @@ namespace SYS_CHEF.UI.Products
             decimal ValueSale = 0;
             if (ckGainInPercent.Checked)
             {
-                //this.tfLucro.Properties.Mask.EditMask = "n";
                 decimal porCento = (ValueCost * Gain) / 100;
                 ValueSale = ValueCost + porCento;
             }
             else
             {
-                //this.tfLucro.Properties.Mask.EditMask = "c2";
                 ValueSale = (ValueCost + Gain);
             }
             ((product)bdgProduct.Current).value_sale = ValueSale;

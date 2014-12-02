@@ -28,9 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CloseCashierForm));
-            DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule2 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
             this.btnCloseAndSaveCashier = new SYS_CHEF.UI.Buttons.ButtonSave();
             this.btnCancel = new SYS_CHEF.UI.Buttons.ButtonExit();
@@ -97,7 +95,6 @@
             this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
-            this.validator = new DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl)).BeginInit();
@@ -138,7 +135,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.tfQnt010.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tfTotal005.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tfQnt005.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.validator)).BeginInit();
             this.SuspendLayout();
             // 
             // groupControl1
@@ -281,15 +277,6 @@
             this.tfValueInCashier.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
             this.tfValueInCashier.Size = new System.Drawing.Size(170, 22);
             this.tfValueInCashier.TabIndex = 2;
-            conditionValidationRule2.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.Greater;
-            conditionValidationRule2.ErrorText = "Informe o valor do fechamento.";
-            conditionValidationRule2.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
-            conditionValidationRule2.Value1 = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.validator.SetValidationRule(this.tfValueInCashier, conditionValidationRule2);
             this.tfValueInCashier.EditValueChanged += new System.EventHandler(this.tfValueInCashier_EditValueChanged);
             // 
             // tfDifference
@@ -920,7 +907,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.tfQnt010.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tfTotal005.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tfQnt005.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.validator)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -993,6 +979,5 @@
         private DevExpress.XtraEditors.LabelControl labelControl4;
         private Buttons.ButtonExit btnCancel;
         private Buttons.ButtonSave btnCloseAndSaveCashier;
-        private DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider validator;
     }
 }

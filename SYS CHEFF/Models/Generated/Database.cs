@@ -6,8 +6,7 @@ using PetaPoco;
 
 namespace SYS_CHEF
 {
-
-	public partial class SysChefRepo : Database
+    public partial class SysChefRepo : Database
 	{
         public static string ConnectionString = String.Format("Server={0};Port={1};User id={2};password={3};Database={4};",
             "localhost", 5432, "postgres", "p@ssw0rd", "syschefsolution");
@@ -16,20 +15,16 @@ namespace SYS_CHEF
 		{
 			CommonConstruct();
 		}
-
 		public SysChefRepo(string connectionStringName) 
 			: base(connectionStringName)
 		{
 			CommonConstruct();
-		}
-		
-		partial void CommonConstruct();
-		
+		}		
+		partial void CommonConstruct();		
 		public interface IFactory
 		{
 			SysChefRepo GetInstance();
-		}
-		
+		}		
 		public static IFactory Factory { get; set; }
         public static SysChefRepo GetInstance()
         {
@@ -41,31 +36,24 @@ namespace SYS_CHEF
 			else
 				return new SysChefRepo();
         }
-
-		[ThreadStatic] static SysChefRepo _instance;
-		
+		[ThreadStatic] static SysChefRepo _instance;		
 		public override void OnBeginTransaction()
 		{
 			if (_instance==null)
 				_instance=this;
-		}
-		
+		}		
 		public override void OnEndTransaction()
 		{
 			if (_instance==this)
 				_instance=null;
 		}
-        
-
-		public class Record<T> where T:new()
+        public class Record<T> where T:new()
 		{
 			public static SysChefRepo repo { get { return SysChefRepo.GetInstance(); } }
 			public bool IsNew() { return repo.IsNew(this); }
 			public object Insert() { return repo.Insert(this); }
-
 			public void Save() { repo.Save(this); }
 			public int Update() { return repo.Update(this); }
-
 			public int Update(IEnumerable<string> columns) { return repo.Update(this, columns); }
 			public static int Update(string sql, params object[] args) { return repo.Update<T>(sql, args); }
 			public static int Update(Sql sql) { return repo.Update<T>(sql); }
@@ -96,936 +84,290 @@ namespace SYS_CHEF
 			public static IEnumerable<T> Query(string sql, params object[] args) { return repo.Query<T>(sql, args); }
 			public static IEnumerable<T> Query(Sql sql) { return repo.Query<T>(sql); }
             public static String Concat(object text) { return String.Format("%{0}%", text); }
-
 		}
+	}    
 
-	}
-	
-
-
-
-    
 	[TableName("products")]
-
-
 	[PrimaryKey("id")]
-
-
-
 	[ExplicitColumns]
     public partial class product : SysChefRepo.Record<product>  
-    {
-
-
-
+    {   
 		[Column] public long id { get; set; }
-
-
-
-
-
 		[Column] public string description { get; set; }
-
-
-
-
-
 		[Column] public int max_stock { get; set; }
-
-
-
-
-
 		[Column] public int min_stock { get; set; }
-
-
-
-
-
 		[Column] public int current_stock { get; set; }
-
-
-
-
-
 		[Column] public int initial_stock { get; set; }
-
-
-
-
-
 		[Column] public bool alter_in_sale { get; set; }
-
-
-
-
-
 		[Column] public decimal value_cost { get; set; }
-
-
-
-
-
 		[Column] public decimal value_sale { get; set; }
-
-
-
-
-
 		[Column] public decimal value_gain { get; set; }
-
-
-
-
-
 		[Column] public bool gain_in_percent { get; set; }
-
-
-
-
-
 		[Column] public DateTime joined_at { get; set; }
-
-
-
-
-
 		[Column] public long category_id { get; set; }
-
-
-
-
         [Column] public long unity_id { get; set; }
-
-
-
-
-
 		[Column] public long provider_id { get; set; }
-
-
-
-
-
 		[Column] public bool inactive { get; set; }
-
-
-
+        [Column] public bool service { get; set; }
+        [Column] public int input_type { get; set; }
 	}
-
-    
+        
 	[TableName("users")]
-
-
 	[PrimaryKey("id")]
-
-
-
 	[ExplicitColumns]
     public partial class user : SysChefRepo.Record<user>  
     {
-
-
-
 		[Column] public long id { get; set; }
-
-
-
-
-
-		[Column] public string full_name { get; set; }
-
-
-
+        [Column] public string full_name { get; set; }
         [Column] public string login { get; set; }
-
-
-
-
-
 		[Column] public string password { get; set; }
-
-
-
-
-
-		[Column] public bool admin { get; set; }
-
-
-
-
-
+        [Column] public bool admin { get; set; }
 		[Column] public bool inactive { get; set; }
-
-
-
-
-
 		[Column] public DateTime admitted_at { get; set; }
-
-
-
-
-
 		[Column] public DateTime? dismissed_at { get; set; }
-
-
-
-
-
 		[Column] public DateTime? last_access_at { get; set; }
-
-
-
-
-
 		[Column] public string last_access_from { get; set; }
-
         [Column] public string phone { get; set; }
-
-
-
-	}
-
-    
-	[TableName("entrance_stock")]
-
-
+    }
+        
+	[TableName("input_stock")]
 	[PrimaryKey("id")]
-
-
-
 	[ExplicitColumns]
-    public partial class entrance_stock : SysChefRepo.Record<entrance_stock>  
+    public partial class input_stock : SysChefRepo.Record<input_stock>  
     {
-
-
-
 		[Column] public long id { get; set; }
-
-
-
-
-
-		[Column] public DateTime entrance_at { get; set; }
-
-
-
-
-
+		[Column] public DateTime input_at { get; set; }
 		[Column] public long users_id { get; set; }
-
-
-
-
-
 		[Column] public long cashier_id { get; set; }
-
-
-
+        [Column] public bool sale { get; set; }
+        [Column] public int nf { get; set; }
 	}
-
-    
+        
 	[TableName("category_products")]
-
-
 	[PrimaryKey("id")]
-
-
-
 	[ExplicitColumns]
     public partial class category_product : SysChefRepo.Record<category_product>  
-    {
-
-
-
+    {        
 		[Column] public long id { get; set; }
-
-
-
-
-
 		[Column] public string category_name { get; set; }
-
-
-
 	}
-
-    
-	[TableName("products_entrance")]
-
-
-	[PrimaryKey("id", autoIncrement=false)]
-
+        
+	[TableName("products_input")]
+	[PrimaryKey("id")]
 	[ExplicitColumns]
-    public partial class products_entrance : SysChefRepo.Record<products_entrance>  
+    public partial class products_input : SysChefRepo.Record<products_input>  
     {
-
-
-
-		[Column] public string id { get; set; }
-
-
-
-
-
+		[Column] public long id { get; set; }
 		[Column] public int quantity { get; set; }
-
-
-
-
-
 		[Column] public decimal value_unitary { get; set; }
-
-
-
-
-
 		[Column] public long products_id { get; set; }
-
-
-
-
-
-		[Column] public long entrance_stock_id { get; set; }
-
-
-
+		[Column] public long input_stock_id { get; set; }
+        public string name_product { get; set; }
+        public decimal value_total { get; set; }
 	}
-
     
 	[TableName("contact_clifor")]
-
-
-	[PrimaryKey("id")]
-
-
-
+   	[PrimaryKey("id")]
 	[ExplicitColumns]
     public partial class contact_clifor : SysChefRepo.Record<contact_clifor>  
     {
-
-
-
 		[Column] public long id { get; set; }
-
-
-
-
-
 		[Column] public string contact { get; set; }
-
-
-
-
-
 		[Column] public long clifor_id { get; set; }
-
-
-
 	}
-
     
 	[TableName("clifor")]
-
-
 	[PrimaryKey("id")]
-
-
-
 	[ExplicitColumns]
     public partial class clifor : SysChefRepo.Record<clifor>  
     {
-
-
-
-		[Column] public long id { get; set; }
-
-
-
-
-
+        [Column] public long id { get; set; }
 		[Column] public string full_name { get; set; }
-
-
-
-
-
 		[Column] public string document { get; set; }
-
-
-
-
-
 		[Column] public string ie_rg { get; set; }
-
-
-
-
-
-		[Column] public int type { get; set; }
-
-
-
-
-
+        [Column] public int type { get; set; }
 		[Column] public string number { get; set; }
-
-
-
-
-
 		[Column] public string complement { get; set; }
-
-
-
-
-
 		[Column] public string state { get; set; }
-
-
-
-
-
 		[Column] public DateTime joined_at { get; set; }
-
-
-
-
-
-		[Column] public DateTime last_store { get; set; }
-
-
-
+        [Column] public DateTime last_store { get; set; }
 	}
-
     
 	[TableName("outputs_stock")]
-
-
-	[PrimaryKey("id")]
-
-
-
+	[PrimaryKey("id")]    
 	[ExplicitColumns]
     public partial class outputs_stock : SysChefRepo.Record<outputs_stock>  
     {
-
-
-
 		[Column] public long id { get; set; }
-
-
-
-
-
-		[Column] public DateTime output_at { get; set; }
-
-
-
-
-
+        [Column] public DateTime output_at { get; set; }
 		[Column] public string reason { get; set; }
-
-
-
-
-
 		[Column] public long users_id { get; set; }
-
-
-
 	}
-
-    
+        
 	[TableName("products_output")]
-
-
 	[PrimaryKey("id")]
-
-
-
-	[ExplicitColumns]
+    [ExplicitColumns]
     public partial class products_output : SysChefRepo.Record<products_output>  
     {
-
-
-
 		[Column] public long id { get; set; }
-
-
-
-
-
 		[Column] public int quantity { get; set; }
-
-
-
-
-
 		[Column] public long products_id { get; set; }
-
-
-
-
-
 		[Column] public long outputs_stock_id { get; set; }
-
-
-
+        public string name_product { get; set; }
 	}
-
-    
+        
 	[TableName("products_sales")]
-
-
 	[PrimaryKey("id")]
-
-
-
 	[ExplicitColumns]
     public partial class products_sale : SysChefRepo.Record<products_sale>  
     {
-
-
-
 		[Column] public long id { get; set; }
-
-
-
-
-
 		[Column] public int quantity { get; set; }
-
-
-
-
-
 		[Column] public decimal value_unitary { get; set; }
-
-
-
-
-
 		[Column] public long sales_id { get; set; }
-
-
-
-
-
 		[Column] public long products_id { get; set; }
-
-
-
+        public string product_name { get; set; }
+        public decimal value_total { get; set; }
 	}
-
     
 	[TableName("email_clifor")]
-
-
 	[PrimaryKey("id")]
-
-
-
 	[ExplicitColumns]
     public partial class email_clifor : SysChefRepo.Record<email_clifor>  
     {
-
-
-
 		[Column] public long id { get; set; }
-
-
-
-
-
 		[Column] public string email { get; set; }
-
-
-
-
-
 		[Column] public long clifor_id { get; set; }
-
-
-
 	}
-
     
 	[TableName("requests")]
-
-
 	[PrimaryKey("id")]
-
-
-
 	[ExplicitColumns]
     public partial class request : SysChefRepo.Record<request>  
     {
-
-
-
 		[Column] public long id { get; set; }
-
-
-
-
-
 		[Column] public DateTime opened_at { get; set; }
-
-
-
-
-
 		[Column] public DateTime closed_at { get; set; }
-
-
-
-
-
 		[Column] public long opened_by { get; set; }
-
-
-
-
-
 		[Column] public long closed_by { get; set; }
-
-
-
-
-
 		[Column] public bool closed { get; set; }
-
-
-
-
-
 		[Column] public string tables_id { get; set; }
-
-
-
-
-
 		[Column] public long cashier_id { get; set; }
-
-
-
 	}
-
-    
+        
 	[TableName("tables")]
-
-
 	[PrimaryKey("id")]
-
 	[ExplicitColumns]
     public partial class table : SysChefRepo.Record<table>  
     {
 		[Column] public long id { get; set; }
         [Column] public int number_of_tables { get; set; }
 	}
-
     
 	[TableName("products_requests")]
-
-
 	[PrimaryKey("id")]
-
-
-
 	[ExplicitColumns]
     public partial class products_request : SysChefRepo.Record<products_request>  
     {
-
-
-
-		[Column] public long id { get; set; }
-
-
-
-
-
+        [Column] public long id { get; set; }
 		[Column] public int quantity { get; set; }
-
-
-
-
-
 		[Column] public decimal value_unitary { get; set; }
-
-
-
-
-
-		[Column] public long requests_id { get; set; }
-
-
-
-
-
+        [Column] public long requests_id { get; set; }
 		[Column] public long products_id { get; set; }
-
-
-
-
-
 		[Column] public long added_by { get; set; }
-
-
-
 	}
-
     
 	[TableName("properties")]
-
-
 	[PrimaryKey("id")]
-
-
-
 	[ExplicitColumns]
     public partial class property : SysChefRepo.Record<property>  
     {
-
-
-
 		[Column] public long id { get; set; }
-
-
-
-
-
 		[Column] public string serial { get; set; }
-
-
-
-
-
-		[Column] public string windows_id { get; set; }
-
-
-
-
-
+        [Column] public string windows_id { get; set; }
 		[Column] public int type_system { get; set; }
-
-
-
-
-
 		[Column] public string licensed_to { get; set; }
-
-
-
-
-
 		[Column] public string licensed_by { get; set; }
-
-
-
-
-
 		[Column] public DateTime expiration_at { get; set; }
-
-
-
 	}
-
     
 	[TableName("cashiers")]
-
-
 	[PrimaryKey("id")]
-
-
-
 	[ExplicitColumns]
     public partial class cashier : SysChefRepo.Record<cashier>  
     {
-
-
-
 		[Column] public long id { get; set; }
-
-
-
-
-
 		[Column] public DateTime opened_at { get; set; }
-
-
-
-
-
 		[Column] public DateTime closed_at { get; set; }
-
-
-
-
-
 		[Column] public bool opened { get; set; }
-
-
-
-
-
 		[Column] public bool locked { get; set; }
-
-
-
-
-
 		[Column] public long apened_by { get; set; }
-
-
-
-
-
-		[Column] public long closed_by { get; set; }
-
-
-
-
-
+        [Column] public long closed_by { get; set; }
 		[Column] public decimal value_closing { get; set; }
-
-
-        [Column] public decimal value_opening { get; set; }        
-
-
-
-
-
-		[Column] public long responsible { get; set; }
-
-
-
-	}
-
+        [Column] public decimal value_opening { get; set; }
+        [Column] public long responsible { get; set; }
+    }
     
 	[TableName("sales")]
-
-
 	[PrimaryKey("id")]
-
-
-
 	[ExplicitColumns]
     public partial class sale : SysChefRepo.Record<sale>  
     {
-
-
-
 		[Column] public long id { get; set; }
-
-
-
-
-
 		[Column] public DateTime sale_at { get; set; }
-
-
-
-
-
-		[Column] public string table_id { get; set; }
-
-
-
-
-
+        [Column] public int table_number { get; set; }
 		[Column] public long customer_id { get; set; }
-
-
-
-
-
 		[Column] public long users_id { get; set; }
-
-
-
-
-
-		[Column] public int payment_type { get; set; }
-
-
-
-
-
+        [Column] public int payment_type { get; set; }
 		[Column] public decimal payment_form { get; set; }
-
-
-
-
-
 		[Column] public long cashier_id { get; set; }
-
-
-
+        [Column] public string description { get; set; }
 	}
-
     
 	[TableName("access_system")]
-
-
 	[PrimaryKey("id")]
-
-
-
 	[ExplicitColumns]
     public partial class access_system : SysChefRepo.Record<access_system>  
     {
-
-
-
 		[Column] public long id { get; set; }
-
-
-
-
-
 		[Column] public long user_id { get; set; }
-
-
-
-
-
 		[Column] public DateTime access_at { get; set; }
-
-
-
-
-
 		[Column] public string access_from { get; set; }
-
-
-
-	}
-
-
+    }
 
     [TableName("unity_products")]
-
-
     [PrimaryKey("id")]
-
-
-
     [ExplicitColumns]
     public partial class unity_products : SysChefRepo.Record<unity_products>
     {
-
-
-
         [Column] public long id { get; set; }
-
-
-
         [Column] public string unity { get; set; }
+    }
 
+    [TableName("input_cashier")]
+    [PrimaryKey("id")]
+    [ExplicitColumns]
+    public partial class input_cashier : SysChefRepo.Record<input_cashier>
+    {
+        [Column] public long id { get; set; }
+        [Column] public decimal value { get; set; }
+        [Column] public string reason { get; set; }
+        [Column] public long cashier_id { get; set; }
+        [Column] public long user_id { get; set; }
+        [Column] public DateTime input_at { get; set; }
 
     }
 
-
+    [TableName("output_cashier")]
+    [PrimaryKey("id")]
+    [ExplicitColumns]
+    public partial class output_cashier : SysChefRepo.Record<output_cashier>
+    {
+        [Column] public long id { get; set; }
+        [Column] public decimal value { get; set; }
+        [Column] public string reason { get; set; }
+        [Column] public long cashier_id { get; set; }
+        [Column] public long user_id { get; set; }
+        [Column] public DateTime output_at { get; set; }
+    }
 }

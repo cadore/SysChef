@@ -109,6 +109,7 @@
             this.Controls.Add(this.lbPhone);
             this.Controls.Add(this.labelControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
             this.Name = "ConfirmNumberUserForm";
             this.ShowIcon = false;

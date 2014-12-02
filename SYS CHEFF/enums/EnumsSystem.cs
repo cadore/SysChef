@@ -39,4 +39,10 @@ namespace SYS_CHEF.enums
         User = 1,
         Admin = 2
     }
+
+    public enum InputTypeProduct
+    {
+        OwnProduction = 1,
+        Purchase = 2
+    }
 }

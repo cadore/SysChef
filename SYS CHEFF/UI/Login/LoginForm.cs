@@ -139,11 +139,9 @@ namespace SYS_CHEF.UI
 
         void showDesktop()
         {
-            DesktopForm desk = new DesktopForm();
-            desk.typeLogin = this.typeLogin;
-            desk.userLogin = this.userLogin;
-            desk.nameUserLogin = this.nameUserLogin;
-            Program.desk = desk;
+            Program.typeLogin = this.typeLogin;
+            Program.userLogin = this.userLogin;
+            Program.nameUserLogin = this.nameUserLogin;
             this.DialogResult = DialogResult.OK;
             this.Close();
         }

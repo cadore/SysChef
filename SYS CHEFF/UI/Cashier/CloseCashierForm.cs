@@ -28,15 +28,7 @@ namespace SYS_CHEF.UI.Cashier
 
         private void getCurrentCashier()
         {
-            try
-            {
-                currentCashier = cashier.SingleOrDefault("WHERE opened = TRUE");
-            }
-            catch(Exception ex)
-            {
-                XtraMessageBox.Show(String.Format("Ocorreu um erro ao recuperar o caixa aberto.\n{0}\n\n{1}", 
-                    ex.Message, ex.InnerException));
-            }
+            currentCashier = Program.getOpenCashier();
         }
 
         void calcValueSystem()
@@ -175,8 +167,11 @@ namespace SYS_CHEF.UI.Cashier
 
         private void btnCloseAndSaveCashier_Click(object sender, EventArgs e)
         {
-            if (!validator.Validate())
+            if (Convert.ToDecimal(tfValueInCashier.EditValue) == 0)
+            {
+                XtraMessageBox.Show("Informe o valor de fechamento do caixa!");
                 return;
+            }
             decimal difference = Convert.ToDecimal(tfDifference.Text.Replace("R$", "").Replace(" ", ""));
             if (difference != 0)
             {
@@ -202,7 +197,7 @@ namespace SYS_CHEF.UI.Cashier
             try
             {
                 currentCashier.closed_at = Program.getDateTime();
-                currentCashier.closed_by = desk.userLogin.id;
+                currentCashier.closed_by = Program.userLogin.id;
                 currentCashier.opened = false;
                 currentCashier.value_closing = Convert.ToDecimal(tfValueInCashier.Text.Replace("R$", "").Replace(" ", ""));
                 currentCashier.Update();

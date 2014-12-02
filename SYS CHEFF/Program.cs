@@ -2,12 +2,17 @@
 using DevExpress.Skins;
 using DevExpress.UserSkins;
 using DevExpress.XtraEditors;
+using DevExpress.XtraSplashScreen;
 using PetaPoco;
+using SYS_CHEF.enums;
 using SYS_CHEF.UI;
+using SYS_CHEF.UI.Utils.SplashScreens;
+using SYS_CHEF.Utils;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Management;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -15,9 +20,11 @@ namespace SYS_CHEF
 {
     static class Program
     {
-        public static DesktopForm desk = null;
         public static bool changeUser = false;
         public static Database db;
+        public static TypeLogin typeLogin;
+        public static user userLogin = null;
+        public static string nameUserLogin = null;
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
@@ -31,7 +38,7 @@ namespace SYS_CHEF
             SkinManager.EnableFormSkins();
             UserLookAndFeel.Default.SetSkinStyle("Office 2013"); //Office 2013 //The Asphalt World
 
-            //SplashForms.ShowWaitForm();
+            SplashScreenManager.ShowForm(null, typeof(SplashScreenForm), false, false, false);
             System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo(AssemblyInfo.AssemblyCulture);
             System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo(AssemblyInfo.AssemblyCulture);
             verefyProcesses();
@@ -44,20 +51,24 @@ namespace SYS_CHEF
             try
             {
                 db = new Database(SysChefRepo.ConnectionString, SysChefRepo.ProviderName);
+                db.BeginTransaction();
             }
             catch (Exception)
             {
                 XtraMessageBox.Show(String.Format("Ocorreu um problema ao conectar com o banco de dados."));
+                Exit(-1);
             }
         }
 
         private static void startApplication()
         {
             changeUser = false;
-            LoginForm lf = new LoginForm();
+            LoginForm lf = new LoginForm();            
+            SplashScreenManager.CloseForm(false); 
             DialogResult rs = lf.ShowDialog();
             if (rs == DialogResult.OK)
             {
+                DesktopForm desk = new DesktopForm();
                 desk.ShowDialog();
             }
             else
@@ -92,6 +103,11 @@ namespace SYS_CHEF
             {
                 throw new Exception(ex.Message, ex.InnerException);
             }
+        }
+
+        public static cashier getOpenCashier()
+        {
+            return CashierInit.getOpenCashier();
         }
     }
 }

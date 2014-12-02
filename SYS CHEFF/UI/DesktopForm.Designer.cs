@@ -29,6 +29,12 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DesktopForm));
+            DevExpress.Utils.SuperToolTip superToolTip1 = new DevExpress.Utils.SuperToolTip();
+            DevExpress.Utils.ToolTipTitleItem toolTipTitleItem1 = new DevExpress.Utils.ToolTipTitleItem();
+            DevExpress.Utils.ToolTipItem toolTipItem1 = new DevExpress.Utils.ToolTipItem();
+            DevExpress.Utils.SuperToolTip superToolTip2 = new DevExpress.Utils.SuperToolTip();
+            DevExpress.Utils.ToolTipTitleItem toolTipTitleItem2 = new DevExpress.Utils.ToolTipTitleItem();
+            DevExpress.Utils.ToolTipItem toolTipItem2 = new DevExpress.Utils.ToolTipItem();
             this.ribbon = new DevExpress.XtraBars.Ribbon.RibbonControl();
             this.backstageViewControl1 = new DevExpress.XtraBars.Ribbon.BackstageViewControl();
             this.backstageChangeUser = new DevExpress.XtraBars.Ribbon.BackstageViewButtonItem();
@@ -41,9 +47,15 @@
             this.menuInputStock = new DevExpress.XtraBars.BarButtonItem();
             this.menuOutputStock = new DevExpress.XtraBars.BarButtonItem();
             this.menuBuyProducts = new DevExpress.XtraBars.BarButtonItem();
+            this.menuInputCashier = new DevExpress.XtraBars.BarButtonItem();
+            this.menuOutputCashier = new DevExpress.XtraBars.BarButtonItem();
+            this.menuSaleDirect = new DevExpress.XtraBars.BarButtonItem();
+            this.menuRequestInTable = new DevExpress.XtraBars.BarButtonItem();
             this.rpAttendance = new DevExpress.XtraBars.Ribbon.RibbonPage();
+            this.rpgSales = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.rpFinancial = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.rpgCashier = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.rpgTransactionsCashier = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.rpAdmin = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.rpgUsers = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.rpStock = new DevExpress.XtraBars.Ribbon.RibbonPage();
@@ -69,9 +81,13 @@
             this.menuProducts,
             this.menuInputStock,
             this.menuOutputStock,
-            this.menuBuyProducts});
+            this.menuBuyProducts,
+            this.menuInputCashier,
+            this.menuOutputCashier,
+            this.menuSaleDirect,
+            this.menuRequestInTable});
             this.ribbon.Location = new System.Drawing.Point(0, 0);
-            this.ribbon.MaxItemId = 8;
+            this.ribbon.MaxItemId = 12;
             this.ribbon.Name = "ribbon";
             this.ribbon.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.rpAttendance,
@@ -149,12 +165,14 @@
             this.menuInputStock.Caption = "Entrada de Estoque";
             this.menuInputStock.Id = 5;
             this.menuInputStock.Name = "menuInputStock";
+            this.menuInputStock.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.menuInputStock_ItemClick);
             // 
             // menuOutputStock
             // 
             this.menuOutputStock.Caption = "Saida de Estoque";
             this.menuOutputStock.Id = 6;
             this.menuOutputStock.Name = "menuOutputStock";
+            this.menuOutputStock.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.menuOutputStock_ItemClick);
             // 
             // menuBuyProducts
             // 
@@ -162,15 +180,68 @@
             this.menuBuyProducts.Id = 7;
             this.menuBuyProducts.Name = "menuBuyProducts";
             // 
+            // menuInputCashier
+            // 
+            this.menuInputCashier.Caption = "Entrada de Dinheiro";
+            this.menuInputCashier.Id = 8;
+            this.menuInputCashier.Name = "menuInputCashier";
+            toolTipTitleItem1.Text = "Entrada de Dinheiro";
+            toolTipItem1.LeftIndent = 6;
+            toolTipItem1.Text = "Suprimento";
+            superToolTip1.Items.Add(toolTipTitleItem1);
+            superToolTip1.Items.Add(toolTipItem1);
+            this.menuInputCashier.SuperTip = superToolTip1;
+            this.menuInputCashier.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.menuInputCashier_ItemClick);
+            // 
+            // menuOutputCashier
+            // 
+            this.menuOutputCashier.Caption = "Saída de Dinheiro";
+            this.menuOutputCashier.Id = 9;
+            this.menuOutputCashier.Name = "menuOutputCashier";
+            toolTipTitleItem2.Text = "Saida de Dinheiro";
+            toolTipItem2.LeftIndent = 6;
+            toolTipItem2.Text = "Sangria";
+            superToolTip2.Items.Add(toolTipTitleItem2);
+            superToolTip2.Items.Add(toolTipItem2);
+            this.menuOutputCashier.SuperTip = superToolTip2;
+            this.menuOutputCashier.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.menuOutputCashier_ItemClick);
+            // 
+            // menuSaleDirect
+            // 
+            this.menuSaleDirect.Caption = "Venda Direta";
+            this.menuSaleDirect.Id = 10;
+            this.menuSaleDirect.Name = "menuSaleDirect";
+            this.menuSaleDirect.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.menuSaleDirect.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.menuSaleDirect_ItemClick);
+            // 
+            // menuRequestInTable
+            // 
+            this.menuRequestInTable.Caption = "Pedido em Mesa";
+            this.menuRequestInTable.Id = 11;
+            this.menuRequestInTable.Name = "menuRequestInTable";
+            this.menuRequestInTable.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            // 
             // rpAttendance
             // 
+            this.rpAttendance.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
+            this.rpgSales});
             this.rpAttendance.Name = "rpAttendance";
             this.rpAttendance.Text = "Atendimento";
+            // 
+            // rpgSales
+            // 
+            this.rpgSales.AllowTextClipping = false;
+            this.rpgSales.ItemLinks.Add(this.menuSaleDirect);
+            this.rpgSales.ItemLinks.Add(this.menuRequestInTable);
+            this.rpgSales.Name = "rpgSales";
+            this.rpgSales.ShowCaptionButton = false;
+            this.rpgSales.Text = "Vendas";
             // 
             // rpFinancial
             // 
             this.rpFinancial.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
-            this.rpgCashier});
+            this.rpgCashier,
+            this.rpgTransactionsCashier});
             this.rpFinancial.Name = "rpFinancial";
             this.rpFinancial.Text = "Financeiro";
             // 
@@ -182,6 +253,15 @@
             this.rpgCashier.Name = "rpgCashier";
             this.rpgCashier.ShowCaptionButton = false;
             this.rpgCashier.Text = "Caixa";
+            // 
+            // rpgTransactionsCashier
+            // 
+            this.rpgTransactionsCashier.AllowTextClipping = false;
+            this.rpgTransactionsCashier.ItemLinks.Add(this.menuInputCashier);
+            this.rpgTransactionsCashier.ItemLinks.Add(this.menuOutputCashier);
+            this.rpgTransactionsCashier.Name = "rpgTransactionsCashier";
+            this.rpgTransactionsCashier.ShowCaptionButton = false;
+            this.rpgTransactionsCashier.Text = "Transações do Caixa";
             // 
             // rpAdmin
             // 
@@ -265,6 +345,7 @@
             this.Controls.Add(this.pnControl);
             this.Controls.Add(this.ribbonStatusBar);
             this.Controls.Add(this.ribbon);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "DesktopForm";
             this.Ribbon = this.ribbon;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -306,5 +387,11 @@
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup rpgProducts;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup rpgTransactions;
         private DevExpress.XtraBars.BarButtonItem menuBuyProducts;
+        private DevExpress.XtraBars.BarButtonItem menuInputCashier;
+        private DevExpress.XtraBars.BarButtonItem menuOutputCashier;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup rpgTransactionsCashier;
+        private DevExpress.XtraBars.BarButtonItem menuSaleDirect;
+        private DevExpress.XtraBars.BarButtonItem menuRequestInTable;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup rpgSales;
     }
 }
