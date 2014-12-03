@@ -20,6 +20,7 @@ using SYS_CHEF.UI.Products;
 using SYS_CHEF.UI.Products.Transactions;
 using SYS_CHEF.UI.Cashier.InputOutput;
 using SYS_CHEF.UI.Sales;
+using KeyGenerator___CadoreTecnologia_Library;
 
 namespace SYS_CHEF.UI
 {
@@ -35,7 +36,36 @@ namespace SYS_CHEF.UI
 
         private void verifyLicense()
         {
-            throw new NotImplementedException();
+            try
+            {
+                LicenseResult lr = KeyGenerator.verifyKey(AssemblyInfo.AssemblyProduct);
+                if (lr == LicenseResult.InvalidPC)
+                {
+                    XtraMessageBox.Show("Esta licença está registrada para outro computador!\nContate o Suporte.");
+                    Environment.Exit(0);
+                }
+                else if (lr == LicenseResult.InvalidDate)
+                {
+                    XtraMessageBox.Show("Esta licença está vencida!\nContate o Suporte.");
+                    Environment.Exit(0);
+                }                
+                else if (lr == LicenseResult.Empty)
+                {
+                    XtraMessageBox.Show("Software não está registrado, por favor contate o suporte!");
+                    Environment.Exit(0);
+                }
+                else if (lr == LicenseResult.Error)
+                {
+                    XtraMessageBox.Show("Ocorreu um erro ao verificar a licença do software\nContate o Suporte.");
+                    Environment.Exit(0);
+                }
+            }
+            catch (Exception ex)
+            {
+                XtraMessageBox.Show(String.Format("Ocorreu um erro ao verificar a licença do software!"
+                    +"\nContate o Suporte.\n{0}\n\n{1}", ex.Message, ex.InnerException));
+                Environment.Exit(0);
+            }
         }
 
         private void DesktopForm_FormClosing(object sender, FormClosingEventArgs e)

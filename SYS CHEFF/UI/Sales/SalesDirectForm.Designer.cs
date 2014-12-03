@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule5 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule1 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule2 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
-            DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule3 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SalesDirectForm));
-            DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule4 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
+            DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule3 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
             this.panelControl4 = new DevExpress.XtraEditors.PanelControl();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
@@ -416,14 +416,14 @@
             this.tfQuantity.Properties.Mask.EditMask = "d";
             this.tfQuantity.Size = new System.Drawing.Size(50, 20);
             this.tfQuantity.TabIndex = 5;
-            conditionValidationRule1.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.Greater;
-            conditionValidationRule1.ErrorText = "Informe a quantidade";
-            conditionValidationRule1.Value1 = new decimal(new int[] {
+            conditionValidationRule5.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.Greater;
+            conditionValidationRule5.ErrorText = "Informe a quantidade";
+            conditionValidationRule5.Value1 = new decimal(new int[] {
             0,
             0,
             0,
             0});
-            this.validatorProducts.SetValidationRule(this.tfQuantity, conditionValidationRule1);
+            this.validatorProducts.SetValidationRule(this.tfQuantity, conditionValidationRule5);
             this.tfQuantity.EditValueChanged += new System.EventHandler(this.CalcValueUnit_EditValueChanged);
             this.tfQuantity.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SalesDirectForm_KeyDown);
             // 
@@ -436,14 +436,14 @@
             this.tfValueUnitary.Properties.Mask.EditMask = "c2";
             this.tfValueUnitary.Size = new System.Drawing.Size(97, 20);
             this.tfValueUnitary.TabIndex = 4;
-            conditionValidationRule2.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.Greater;
-            conditionValidationRule2.ErrorText = "Informe o valor unitário do produto";
-            conditionValidationRule2.Value1 = new decimal(new int[] {
+            conditionValidationRule1.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.Greater;
+            conditionValidationRule1.ErrorText = "Informe o valor unitário do produto";
+            conditionValidationRule1.Value1 = new decimal(new int[] {
             0,
             0,
             0,
             0});
-            this.validatorProducts.SetValidationRule(this.tfValueUnitary, conditionValidationRule2);
+            this.validatorProducts.SetValidationRule(this.tfValueUnitary, conditionValidationRule1);
             this.tfValueUnitary.EditValueChanged += new System.EventHandler(this.CalcValueUnit_EditValueChanged);
             this.tfValueUnitary.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SalesDirectForm_KeyDown);
             // 
@@ -454,14 +454,14 @@
             this.tfTotal.Properties.ReadOnly = true;
             this.tfTotal.Size = new System.Drawing.Size(104, 20);
             this.tfTotal.TabIndex = 3;
-            conditionValidationRule3.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.Greater;
-            conditionValidationRule3.ErrorText = "Valor total é necessário";
-            conditionValidationRule3.Value1 = new decimal(new int[] {
+            conditionValidationRule2.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.Greater;
+            conditionValidationRule2.ErrorText = "Valor total é necessário";
+            conditionValidationRule2.Value1 = new decimal(new int[] {
             0,
             0,
             0,
             0});
-            this.validatorProducts.SetValidationRule(this.tfTotal, conditionValidationRule3);
+            this.validatorProducts.SetValidationRule(this.tfTotal, conditionValidationRule2);
             // 
             // btnAdd
             // 
@@ -493,10 +493,10 @@
             this.cbProduct.Properties.View = this.searchLookUpEdit1View;
             this.cbProduct.Size = new System.Drawing.Size(262, 20);
             this.cbProduct.TabIndex = 1;
-            conditionValidationRule4.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.Greater;
-            conditionValidationRule4.ErrorText = "Selecione um produto";
-            conditionValidationRule4.Value1 = ((long)(0));
-            this.validatorProducts.SetValidationRule(this.cbProduct, conditionValidationRule4);
+            conditionValidationRule3.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.Greater;
+            conditionValidationRule3.ErrorText = "Selecione um produto";
+            conditionValidationRule3.Value1 = ((long)(0));
+            this.validatorProducts.SetValidationRule(this.cbProduct, conditionValidationRule3);
             this.cbProduct.EditValueChanged += new System.EventHandler(this.cbProduct_EditValueChanged);
             // 
             // bdgProducts
