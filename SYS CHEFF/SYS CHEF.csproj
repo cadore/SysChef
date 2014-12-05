@@ -196,6 +196,12 @@
     <Compile Include="UI\Cashier\InputOutput\OutputCashierForm.Designer.cs">
       <DependentUpon>OutputCashierForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\Customers\SelectCliForForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Customers\SelectCliForForm.Designer.cs">
+      <DependentUpon>SelectCliForForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\DesktopForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -301,6 +307,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Cashier\InputOutput\OutputCashierForm.resx">
       <DependentUpon>OutputCashierForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Customers\SelectCliForForm.resx">
+      <DependentUpon>SelectCliForForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\DesktopForm.resx">
       <DependentUpon>DesktopForm.cs</DependentUpon>

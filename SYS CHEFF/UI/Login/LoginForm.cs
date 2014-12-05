@@ -31,6 +31,8 @@ namespace SYS_CHEF.UI
             this.MinimumSize = this.Size;
             Text = "SysChef - Cadore Tecnologia - Alfa Beta 1";
             this.groupControl.Text = Text;
+            tfLogin.Text = "admin";
+            tfPassword.Text = "admin";
         }
 
         private void btnCancelLogin_Click(object sender, EventArgs e)

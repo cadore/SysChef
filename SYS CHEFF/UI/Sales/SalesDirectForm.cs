@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using DevExpress.XtraSplashScreen;
+using SYS_CHEF.UI.Customers;
 
 namespace SYS_CHEF.UI.Sales
 {
@@ -61,7 +62,8 @@ namespace SYS_CHEF.UI.Sales
 
         private void lbCustomer_Click(object sender, EventArgs e)
         {
-            XtraMessageBox.Show("Função de clientes e fornecedor ainda em implantação!");
+            SelectCliForForm scff = new SelectCliForForm();
+            //scff.ShowDialog();
             this.Focus();
         }
 
@@ -85,7 +87,7 @@ namespace SYS_CHEF.UI.Sales
         {
             decimal quantity = Convert.ToDecimal(tfQuantity.EditValue);
             decimal value_unity = Convert.ToDecimal(tfValueUnitary.EditValue);
-            tfTotal.EditValue = String.Format("{0:c2}", (quantity * value_unity));
+            tfTotalProduct.EditValue = String.Format("{0:c2}", (quantity * value_unity));
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -126,12 +128,54 @@ namespace SYS_CHEF.UI.Sales
                 product_name = p.description,
                 quantity = Convert.ToInt32(tfQuantity.EditValue),
                 value_unitary = Convert.ToDecimal(tfValueUnitary.EditValue),
-                value_total = Convert.ToDecimal(tfTotal.Text.Replace("R$", "").Replace(" ", ""))
+                value_total = Convert.ToDecimal(tfTotalProduct.Text.Replace("R$", "").Replace(" ", ""))
             });
             cbProduct.EditValue = null;
             tfQuantity.EditValue = null;
             tfValueUnitary.EditValue = null;
-            tfTotal.EditValue = null;
+            tfTotalProduct.EditValue = null;
+            tfSubTotal.EditValue = colvalue_total.SummaryItem.SummaryValue;
+            CalcValues(sender, e);
+        }
+
+        private void CalcValues(object sender, EventArgs e)
+        {
+            decimal subTotal = Convert.ToDecimal(tfSubTotal.EditValue);
+            decimal discount = Convert.ToDecimal(tfDiscount.EditValue);
+
+            tfTotalSale.EditValue = subTotal - discount;
+
+            decimal total = Convert.ToDecimal(tfTotalSale.EditValue);
+
+            /*if (tfReceived.EditValue == null || Convert.ToDecimal(tfReceived.EditValue) == 0)
+            {
+                tfReceived.EditValue = total;
+            }*/
+
+            decimal received = Convert.ToDecimal(tfReceived.EditValue);
+
+            tfReturn.EditValue = received - total;
+
+            decimal returnM = Convert.ToDecimal(tfReturn.EditValue);
+
+            if (returnM > 0)
+            {
+                tfReturn.ForeColor = Color.Green;
+                lbReturn.ForeColor = Color.Green;
+                lbReturn.Text = "Troco";
+            }
+            else if (returnM < 0)
+            {
+                tfReturn.ForeColor = Color.Red;
+                lbReturn.ForeColor = Color.Red;
+                lbReturn.Text = "Debitar";
+            }
+            else
+            {
+                tfReturn.ForeColor = Color.Black;
+                lbReturn.ForeColor = Color.Black;
+                lbReturn.Text = "Troco";
+            }
         }
     }
 }

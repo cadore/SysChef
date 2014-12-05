@@ -54,16 +54,16 @@
             this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
             this.tfDiscount = new DevExpress.XtraEditors.CalcEdit();
             this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
-            this.textEdit2 = new DevExpress.XtraEditors.TextEdit();
-            this.labelControl10 = new DevExpress.XtraEditors.LabelControl();
-            this.textEdit3 = new DevExpress.XtraEditors.TextEdit();
+            this.tfTotalSale = new DevExpress.XtraEditors.TextEdit();
+            this.lbReturn = new DevExpress.XtraEditors.LabelControl();
+            this.tfReturn = new DevExpress.XtraEditors.TextEdit();
             this.labelControl8 = new DevExpress.XtraEditors.LabelControl();
-            this.textEdit1 = new DevExpress.XtraEditors.TextEdit();
+            this.tfSubTotal = new DevExpress.XtraEditors.TextEdit();
             this.labelControl9 = new DevExpress.XtraEditors.LabelControl();
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
             this.tfQuantity = new DevExpress.XtraEditors.SpinEdit();
             this.tfValueUnitary = new DevExpress.XtraEditors.CalcEdit();
-            this.tfTotal = new DevExpress.XtraEditors.TextEdit();
+            this.tfTotalProduct = new DevExpress.XtraEditors.TextEdit();
             this.btnAdd = new SYS_CHEF.UI.Buttons.ButtonAdd();
             this.cbProduct = new DevExpress.XtraEditors.SearchLookUpEdit();
             this.bdgProducts = new System.Windows.Forms.BindingSource(this.components);
@@ -90,11 +90,10 @@
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            this.lbCustomer = new DevExpress.XtraEditors.LabelControl();
             this.btnSave = new SYS_CHEF.UI.Buttons.ButtonSave();
             this.btnCancel = new SYS_CHEF.UI.Buttons.ButtonExit();
             this.pnCustomer = new DevExpress.XtraEditors.PanelControl();
-            this.lbCustomer = new DevExpress.XtraEditors.LabelControl();
-            this.lbClearCustomer = new DevExpress.XtraEditors.LabelControl();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.validatorProducts = new DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
@@ -113,14 +112,14 @@
             this.groupControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tfReceived.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tfDiscount.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit2.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit3.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tfTotalSale.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tfReturn.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tfSubTotal.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
             this.panelControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tfQuantity.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tfValueUnitary.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tfTotal.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tfTotalProduct.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cbProduct.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdgProducts)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1View)).BeginInit();
@@ -141,7 +140,7 @@
             this.groupControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupControl1.Location = new System.Drawing.Point(0, 0);
             this.groupControl1.Name = "groupControl1";
-            this.groupControl1.Size = new System.Drawing.Size(860, 507);
+            this.groupControl1.Size = new System.Drawing.Size(860, 450);
             this.groupControl1.TabIndex = 0;
             this.groupControl1.Text = "Venda Direta";
             // 
@@ -151,7 +150,7 @@
             this.panelControl4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelControl4.Location = new System.Drawing.Point(2, 90);
             this.panelControl4.Name = "panelControl4";
-            this.panelControl4.Size = new System.Drawing.Size(856, 269);
+            this.panelControl4.Size = new System.Drawing.Size(856, 212);
             this.panelControl4.TabIndex = 4;
             // 
             // gridControl1
@@ -161,7 +160,7 @@
             this.gridControl1.Location = new System.Drawing.Point(2, 2);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(852, 265);
+            this.gridControl1.Size = new System.Drawing.Size(852, 208);
             this.gridControl1.TabIndex = 0;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -245,6 +244,8 @@
             this.colvalue_total.FieldName = "value_total";
             this.colvalue_total.Name = "colvalue_total";
             this.colvalue_total.OptionsColumn.AllowEdit = false;
+            this.colvalue_total.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "value_total", "Total: {0:c2}")});
             this.colvalue_total.Visible = true;
             this.colvalue_total.VisibleIndex = 3;
             this.colvalue_total.Width = 109;
@@ -255,7 +256,7 @@
             this.panelControl3.Controls.Add(this.groupControl3);
             this.panelControl3.Controls.Add(this.groupControl2);
             this.panelControl3.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelControl3.Location = new System.Drawing.Point(2, 359);
+            this.panelControl3.Location = new System.Drawing.Point(2, 302);
             this.panelControl3.Name = "panelControl3";
             this.panelControl3.Size = new System.Drawing.Size(856, 105);
             this.panelControl3.TabIndex = 3;
@@ -284,11 +285,11 @@
             this.groupControl2.Controls.Add(this.labelControl6);
             this.groupControl2.Controls.Add(this.tfDiscount);
             this.groupControl2.Controls.Add(this.labelControl7);
-            this.groupControl2.Controls.Add(this.textEdit2);
-            this.groupControl2.Controls.Add(this.labelControl10);
-            this.groupControl2.Controls.Add(this.textEdit3);
+            this.groupControl2.Controls.Add(this.tfTotalSale);
+            this.groupControl2.Controls.Add(this.lbReturn);
+            this.groupControl2.Controls.Add(this.tfReturn);
             this.groupControl2.Controls.Add(this.labelControl8);
-            this.groupControl2.Controls.Add(this.textEdit1);
+            this.groupControl2.Controls.Add(this.tfSubTotal);
             this.groupControl2.Controls.Add(this.labelControl9);
             this.groupControl2.Location = new System.Drawing.Point(444, 0);
             this.groupControl2.Name = "groupControl2";
@@ -304,6 +305,7 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.tfReceived.Size = new System.Drawing.Size(114, 20);
             this.tfReceived.TabIndex = 2;
+            this.tfReceived.EditValueChanged += new System.EventHandler(this.CalcValues);
             // 
             // labelControl6
             // 
@@ -319,8 +321,10 @@
             this.tfDiscount.Name = "tfDiscount";
             this.tfDiscount.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.tfDiscount.Properties.Mask.EditMask = "c";
             this.tfDiscount.Size = new System.Drawing.Size(114, 20);
             this.tfDiscount.TabIndex = 2;
+            this.tfDiscount.EditValueChanged += new System.EventHandler(this.CalcValues);
             // 
             // labelControl7
             // 
@@ -330,33 +334,33 @@
             this.labelControl7.TabIndex = 0;
             this.labelControl7.Text = "Desconto (F11):";
             // 
-            // textEdit2
+            // tfTotalSale
             // 
-            this.textEdit2.Location = new System.Drawing.Point(90, 76);
-            this.textEdit2.Name = "textEdit2";
-            this.textEdit2.Properties.Mask.EditMask = "c";
-            this.textEdit2.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
-            this.textEdit2.Properties.ReadOnly = true;
-            this.textEdit2.Size = new System.Drawing.Size(114, 20);
-            this.textEdit2.TabIndex = 1;
+            this.tfTotalSale.Location = new System.Drawing.Point(90, 76);
+            this.tfTotalSale.Name = "tfTotalSale";
+            this.tfTotalSale.Properties.Mask.EditMask = "c";
+            this.tfTotalSale.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
+            this.tfTotalSale.Properties.ReadOnly = true;
+            this.tfTotalSale.Size = new System.Drawing.Size(114, 20);
+            this.tfTotalSale.TabIndex = 1;
             // 
-            // labelControl10
+            // lbReturn
             // 
-            this.labelControl10.Location = new System.Drawing.Point(256, 53);
-            this.labelControl10.Name = "labelControl10";
-            this.labelControl10.Size = new System.Drawing.Size(31, 13);
-            this.labelControl10.TabIndex = 0;
-            this.labelControl10.Text = "Troco:";
+            this.lbReturn.Location = new System.Drawing.Point(256, 53);
+            this.lbReturn.Name = "lbReturn";
+            this.lbReturn.Size = new System.Drawing.Size(31, 13);
+            this.lbReturn.TabIndex = 0;
+            this.lbReturn.Text = "Troco:";
             // 
-            // textEdit3
+            // tfReturn
             // 
-            this.textEdit3.Location = new System.Drawing.Point(293, 50);
-            this.textEdit3.Name = "textEdit3";
-            this.textEdit3.Properties.Mask.EditMask = "c";
-            this.textEdit3.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
-            this.textEdit3.Properties.ReadOnly = true;
-            this.textEdit3.Size = new System.Drawing.Size(114, 20);
-            this.textEdit3.TabIndex = 1;
+            this.tfReturn.Location = new System.Drawing.Point(293, 50);
+            this.tfReturn.Name = "tfReturn";
+            this.tfReturn.Properties.Mask.EditMask = "c";
+            this.tfReturn.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
+            this.tfReturn.Properties.ReadOnly = true;
+            this.tfReturn.Size = new System.Drawing.Size(114, 20);
+            this.tfReturn.TabIndex = 1;
             // 
             // labelControl8
             // 
@@ -366,15 +370,16 @@
             this.labelControl8.TabIndex = 0;
             this.labelControl8.Text = "Total:";
             // 
-            // textEdit1
+            // tfSubTotal
             // 
-            this.textEdit1.Location = new System.Drawing.Point(90, 24);
-            this.textEdit1.Name = "textEdit1";
-            this.textEdit1.Properties.Mask.EditMask = "c";
-            this.textEdit1.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
-            this.textEdit1.Properties.ReadOnly = true;
-            this.textEdit1.Size = new System.Drawing.Size(114, 20);
-            this.textEdit1.TabIndex = 1;
+            this.tfSubTotal.EditValue = "";
+            this.tfSubTotal.Location = new System.Drawing.Point(90, 24);
+            this.tfSubTotal.Name = "tfSubTotal";
+            this.tfSubTotal.Properties.Mask.EditMask = "c";
+            this.tfSubTotal.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
+            this.tfSubTotal.Properties.ReadOnly = true;
+            this.tfSubTotal.Size = new System.Drawing.Size(114, 20);
+            this.tfSubTotal.TabIndex = 1;
             // 
             // labelControl9
             // 
@@ -388,7 +393,7 @@
             // 
             this.panelControl2.Controls.Add(this.tfQuantity);
             this.panelControl2.Controls.Add(this.tfValueUnitary);
-            this.panelControl2.Controls.Add(this.tfTotal);
+            this.panelControl2.Controls.Add(this.tfTotalProduct);
             this.panelControl2.Controls.Add(this.btnAdd);
             this.panelControl2.Controls.Add(this.cbProduct);
             this.panelControl2.Controls.Add(this.labelControl5);
@@ -447,13 +452,13 @@
             this.tfValueUnitary.EditValueChanged += new System.EventHandler(this.CalcValueUnit_EditValueChanged);
             this.tfValueUnitary.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SalesDirectForm_KeyDown);
             // 
-            // tfTotal
+            // tfTotalProduct
             // 
-            this.tfTotal.Location = new System.Drawing.Point(646, 12);
-            this.tfTotal.Name = "tfTotal";
-            this.tfTotal.Properties.ReadOnly = true;
-            this.tfTotal.Size = new System.Drawing.Size(104, 20);
-            this.tfTotal.TabIndex = 3;
+            this.tfTotalProduct.Location = new System.Drawing.Point(646, 12);
+            this.tfTotalProduct.Name = "tfTotalProduct";
+            this.tfTotalProduct.Properties.ReadOnly = true;
+            this.tfTotalProduct.Size = new System.Drawing.Size(104, 20);
+            this.tfTotalProduct.TabIndex = 3;
             conditionValidationRule2.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.Greater;
             conditionValidationRule2.ErrorText = "Valor total é necessário";
             conditionValidationRule2.Value1 = new decimal(new int[] {
@@ -461,7 +466,7 @@
             0,
             0,
             0});
-            this.validatorProducts.SetValidationRule(this.tfTotal, conditionValidationRule2);
+            this.validatorProducts.SetValidationRule(this.tfTotalProduct, conditionValidationRule2);
             // 
             // btnAdd
             // 
@@ -679,10 +684,22 @@
             this.panelControl1.Controls.Add(this.btnSave);
             this.panelControl1.Controls.Add(this.btnCancel);
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelControl1.Location = new System.Drawing.Point(2, 464);
+            this.panelControl1.Location = new System.Drawing.Point(2, 407);
             this.panelControl1.Name = "panelControl1";
             this.panelControl1.Size = new System.Drawing.Size(856, 41);
             this.panelControl1.TabIndex = 1;
+            // 
+            // lbCustomer
+            // 
+            this.lbCustomer.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.Horizontal;
+            this.lbCustomer.Location = new System.Drawing.Point(53, 7);
+            this.lbCustomer.Name = "lbCustomer";
+            this.lbCustomer.Size = new System.Drawing.Size(106, 13);
+            this.lbCustomer.TabIndex = 0;
+            this.lbCustomer.Text = "Selecionar cliente (F5)";
+            this.lbCustomer.Click += new System.EventHandler(this.lbCustomer_Click);
+            this.lbCustomer.MouseEnter += new System.EventHandler(this.lbEnter);
+            this.lbCustomer.MouseLeave += new System.EventHandler(this.lbLeave);
             // 
             // btnSave
             // 
@@ -721,34 +738,12 @@
             // pnCustomer
             // 
             this.pnCustomer.Controls.Add(this.lbCustomer);
-            this.pnCustomer.Controls.Add(this.lbClearCustomer);
             this.pnCustomer.Controls.Add(this.labelControl1);
             this.pnCustomer.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnCustomer.Location = new System.Drawing.Point(2, 21);
             this.pnCustomer.Name = "pnCustomer";
             this.pnCustomer.Size = new System.Drawing.Size(856, 27);
             this.pnCustomer.TabIndex = 0;
-            // 
-            // lbCustomer
-            // 
-            this.lbCustomer.Location = new System.Drawing.Point(54, 7);
-            this.lbCustomer.Name = "lbCustomer";
-            this.lbCustomer.Size = new System.Drawing.Size(106, 13);
-            this.lbCustomer.TabIndex = 0;
-            this.lbCustomer.Text = "Selecionar cliente (F5)";
-            this.lbCustomer.Click += new System.EventHandler(this.lbCustomer_Click);
-            this.lbCustomer.MouseEnter += new System.EventHandler(this.lbEnter);
-            this.lbCustomer.MouseLeave += new System.EventHandler(this.lbLeave);
-            // 
-            // lbClearCustomer
-            // 
-            this.lbClearCustomer.Location = new System.Drawing.Point(167, 7);
-            this.lbClearCustomer.Name = "lbClearCustomer";
-            this.lbClearCustomer.Size = new System.Drawing.Size(6, 13);
-            this.lbClearCustomer.TabIndex = 0;
-            this.lbClearCustomer.Text = "X";
-            this.lbClearCustomer.MouseEnter += new System.EventHandler(this.lbEnter);
-            this.lbClearCustomer.MouseLeave += new System.EventHandler(this.lbLeave);
             // 
             // labelControl1
             // 
@@ -762,7 +757,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(860, 507);
+            this.ClientSize = new System.Drawing.Size(860, 450);
             this.ControlBox = false;
             this.Controls.Add(this.groupControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -790,15 +785,15 @@
             this.groupControl2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tfReceived.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tfDiscount.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit2.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit3.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tfTotalSale.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tfReturn.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tfSubTotal.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
             this.panelControl2.ResumeLayout(false);
             this.panelControl2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tfQuantity.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tfValueUnitary.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tfTotal.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tfTotalProduct.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cbProduct.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdgProducts)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1View)).EndInit();
@@ -821,7 +816,6 @@
         private DevExpress.XtraEditors.PanelControl panelControl1;
         private Buttons.ButtonSave btnSave;
         private Buttons.ButtonExit btnCancel;
-        private DevExpress.XtraEditors.LabelControl lbClearCustomer;
         private DevExpress.XtraEditors.PanelControl panelControl2;
         private Buttons.ButtonAdd btnAdd;
         private DevExpress.XtraEditors.SearchLookUpEdit cbProduct;
@@ -829,7 +823,7 @@
         private DevExpress.XtraEditors.LabelControl labelControl2;
         private DevExpress.XtraEditors.SpinEdit tfQuantity;
         private DevExpress.XtraEditors.CalcEdit tfValueUnitary;
-        private DevExpress.XtraEditors.TextEdit tfTotal;
+        private DevExpress.XtraEditors.TextEdit tfTotalProduct;
         private DevExpress.XtraEditors.LabelControl labelControl5;
         private DevExpress.XtraEditors.LabelControl labelControl4;
         private DevExpress.XtraEditors.LabelControl labelControl3;
@@ -865,15 +859,15 @@
         private DevExpress.XtraGrid.Columns.GridColumn colproduct_name;
         private DevExpress.XtraGrid.Columns.GridColumn colvalue_total;
         private DevExpress.XtraEditors.CalcEdit tfDiscount;
-        private DevExpress.XtraEditors.TextEdit textEdit1;
+        private DevExpress.XtraEditors.TextEdit tfSubTotal;
         private DevExpress.XtraEditors.LabelControl labelControl7;
         private DevExpress.XtraEditors.LabelControl labelControl6;
         private DevExpress.XtraEditors.CalcEdit tfReceived;
-        private DevExpress.XtraEditors.TextEdit textEdit2;
-        private DevExpress.XtraEditors.TextEdit textEdit3;
+        private DevExpress.XtraEditors.TextEdit tfTotalSale;
+        private DevExpress.XtraEditors.TextEdit tfReturn;
         private DevExpress.XtraEditors.LabelControl labelControl9;
         private DevExpress.XtraEditors.LabelControl labelControl8;
-        private DevExpress.XtraEditors.LabelControl labelControl10;
+        private DevExpress.XtraEditors.LabelControl lbReturn;
         private DevExpress.XtraEditors.GroupControl groupControl2;
         private DevExpress.XtraEditors.GroupControl groupControl3;
         private DevExpress.XtraEditors.MemoEdit tfDescription;
